@@ -10,7 +10,7 @@ describe("View", function() {
       child = new View({ id: 'child' });
     });
 
-    it("should return this instance", function() {
+    it("should be chainable", function() {
       expect(view.add(child)).toBe(view);
     });
     
@@ -39,7 +39,7 @@ describe("View", function() {
       child2 = new View({ id: 'child2' });
     });
 
-    it("should return this instance", function() {
+    it("should be chainable", function() {
       expect(view.render()).toBe(view);
     });
     
