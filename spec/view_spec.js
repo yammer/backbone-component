@@ -76,5 +76,14 @@ describe("View", function() {
       expect(child1.remove).toHaveBeenCalled();
       expect(child2.remove).toHaveBeenCalled();
     });
+
+    it("should remove itself from the DOM", function() {
+      var div = $('<div></div>');
+      div.append(view.$el);
+      view.render();
+      view.remove();
+
+      expect(div.children().length).toBe(0);
+    });
   });
 });

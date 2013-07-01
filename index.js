@@ -26,6 +26,8 @@ module.exports = Backbone.View.extend({
     _.each(this._children, function(child) {
       child.remove();
     });
+
+    Backbone.View.prototype.remove.apply(this, arguments);
   },
 
   render: function() {
