@@ -2,22 +2,25 @@ var View = require('../');
 
 describe("View", function() {
   
-  describe("adding a child view", function() {
+  describe("add", function() {
+    var view, child;
+
+    beforeEach(function() {
+      view = new View;
+      child = new View({ id: 'child' });
+    });
     
     it("should add the child element", function() {
-      var view1 = new View;
-      var view2 = new View({ id: 'view2' });
+      view.add(child);
+      view.render();
 
-      view1.add(view2);
-      view1.render();
+      spyOn(child, 'render');
 
-      spyOn(view2, 'render');
-
-      expect(view1.$el.find('#view2').length).toBe(1);
+      expect(view.$el.find('#child').length).toBe(1);
     });
   });
 
-  describe("rendering", function() {
+  describe("render", function() {
     
     it("should render all its children", function() {
       var view1 = new View;
