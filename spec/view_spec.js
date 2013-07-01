@@ -55,4 +55,26 @@ describe("View", function() {
       expect(child2.render).toHaveBeenCalled();
     });
   });
+
+  describe("remove", function() {
+    var view, child1, child2;
+
+    beforeEach(function() {
+      view = new View;
+      child1 = new View({ id: 'child1' });
+      child2 = new View({ id: 'child2' });
+    });
+    
+    it("should remove all children", function() {
+      spyOn(child1, 'remove');
+      spyOn(child2, 'remove');
+
+      view.add(child1);
+      view.add(child2);
+      view.remove();
+
+      expect(child1.remove).toHaveBeenCalled();
+      expect(child2.remove).toHaveBeenCalled();
+    });
+  });
 });

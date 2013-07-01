@@ -22,6 +22,12 @@ module.exports = Backbone.View.extend({
     return this;
   },
 
+  remove: function() {
+    _.each(this._children, function(child) {
+      child.remove();
+    });
+  },
+
   render: function() {
     _.each(this._children, function(child) {
       child.render();
