@@ -12,11 +12,17 @@ describe("View", function() {
     
     it("should add the child element", function() {
       view.add(child);
-      view.render();
 
       spyOn(child, 'render');
 
       expect(view.$el.find('#child').length).toBe(1);
+    });
+
+    it("should add the child element to the correct element", function() {
+      view.$el.append('<div id="foo"></div>');
+      view.add(child, '#foo');
+
+      expect(view.$el.find('#foo > #child').length).toBe(1);
     });
   });
 
