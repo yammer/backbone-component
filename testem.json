@@ -1,0 +1,6 @@
+{
+  "framework": "jasmine",
+  "src_files": [
+    "spec/**/*.js"
+  ]
+}
