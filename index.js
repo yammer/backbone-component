@@ -24,5 +24,7 @@ module.exports = Backbone.View.extend({
     _.each(this._children, function(child) {
       child.render();
     });
+
+    return this;
   }
 });

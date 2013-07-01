@@ -27,6 +27,11 @@ describe("View", function() {
   });
 
   describe("render", function() {
+
+    it("should return this instance", function() {
+      var view = new View;
+      expect(view.render()).toBe(view);
+    });
     
     it("should render all its children", function() {
       var view1 = new View;
