@@ -21,20 +21,13 @@ module.exports = Backbone.View.extend({
   },
 
   remove: function() {
-    _.each(this._children, function(child) {
-      child.remove();
-    });
-
+    _.invoke(this._children, 'remove');
     Backbone.View.prototype.remove.apply(this, arguments);
-
     return this;
   },
 
   render: function() {
-    _.each(this._children, function(child) {
-      child.render();
-    });
-
+    _.invoke(this._children, 'render');
     return this;
   }
 });
