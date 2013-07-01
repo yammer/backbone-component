@@ -18,6 +18,8 @@ module.exports = Backbone.View.extend({
     else {
       this.$el.append(child.$el);
     }
+
+    return this;
   },
 
   render: function() {
