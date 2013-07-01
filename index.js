@@ -9,15 +9,13 @@ module.exports = Backbone.View.extend({
     Backbone.View.apply(this, arguments);
   },
 
-  add: function(child, selector) {
+  add: function(child, selector, method) {
     this._children.push(child);
 
-    if (selector) {
-      this.$el.find(selector).append(child.$el);
-    }
-    else {
-      this.$el.append(child.$el);
-    }
+    method = method || 'append';
+    var target = selector ? this.$(selector) : this.$el;
+
+    target[method](child.$el);
 
     return this;
   },

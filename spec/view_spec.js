@@ -28,6 +28,20 @@ describe("View", function() {
 
       expect(view.$el.find('#foo > #child').length).toBe(1);
     });
+
+    it("should use the correct attach method", function() {
+      view.$el.append('<div id="foo"><div id="bar"></div></div>');
+      view.add(child, '#foo', 'prepend');
+
+      expect(view.$el.find('#foo > #child:first-child').length).toBe(1);
+    });
+
+    it("should use append as default attach method", function() {
+      view.$el.append('<div id="foo"><div id="bar"></div></div>');
+      view.add(child, '#foo');
+
+      expect(view.$el.find('#foo > #child:last-child').length).toBe(1);
+    });
   });
 
   describe("render", function() {
