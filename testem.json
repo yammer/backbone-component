@@ -2,5 +2,6 @@
   "framework": "jasmine",
   "src_files": [
     "spec/**/*.js"
-  ]
+  ],
+  "before_tests": "make build"
 }
