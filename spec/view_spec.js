@@ -64,6 +64,10 @@ describe("View", function() {
       child1 = new View({ id: 'child1' });
       child2 = new View({ id: 'child2' });
     });
+
+    it("should be chainable", function() {
+      expect(view.remove()).toBe(view);
+    });
     
     it("should remove all children", function() {
       spyOn(child1, 'remove');

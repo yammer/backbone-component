@@ -28,6 +28,8 @@ module.exports = Backbone.View.extend({
     });
 
     Backbone.View.prototype.remove.apply(this, arguments);
+
+    return this;
   },
 
   render: function() {
