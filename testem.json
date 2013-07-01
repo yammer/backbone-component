@@ -3,5 +3,9 @@
   "src_files": [
     "spec/**/*.js"
   ],
-  "before_tests": "make build"
+  "serve_files": [
+    "specs.js"
+  ],
+  "before_tests": "make test",
+  "after_tests": "make clean"
 }
