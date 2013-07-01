@@ -9,6 +9,10 @@ describe("View", function() {
       view = new View;
       child = new View({ id: 'child' });
     });
+
+    it("should return this instance", function() {
+      expect(view.render()).toBe(view);
+    });
     
     it("should add the child element", function() {
       view.add(child);
