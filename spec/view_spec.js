@@ -14,9 +14,6 @@ describe("View", function() {
     
     it("should add the child element", function() {
       view.add(child);
-
-      spyOn(child, 'render');
-
       expect(view.$el.find('#child').length).toBe(1);
     });
 
@@ -65,6 +62,41 @@ describe("View", function() {
 
       expect(child1.render).toHaveBeenCalled();
       expect(child2.render).toHaveBeenCalled();
+    });
+
+    it("should reattach its children", function() {
+      view.add(child1);
+      view.add(child2);
+
+      view.render();
+
+      expect(view.$el.find('#child1').length).toBe(1);
+      expect(view.$el.find('#child2').length).toBe(1);
+    });
+
+    it("should add the child element to the correct element", function() {
+      view.$el.append('<div id="foo"></div>');
+      view.add(child1, '#foo');
+      view.render();
+
+      expect(view.$el.find('#foo > #child1').length).toBe(1);
+    });
+
+    it("should use the correct attach method", function() {
+      view.$el.append('<div id="foo"><div id="bar"></div></div>');
+      view.add(child1, '#foo', 'prepend');
+      view.render();
+
+      expect(view.$el.find('#foo > #child1:first-child').length).toBe(1);
+    });
+
+    it("should use append as default attach method", function() {
+      view.$el.append('<div id="foo"><div id="bar"></div></div>');
+      view.add(child1, '#foo');
+
+      view.render();
+
+      expect(view.$el.find('#foo > #child1:last-child').length).toBe(1);
     });
   });
 
