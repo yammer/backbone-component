@@ -143,31 +143,4 @@ describe("View", function() {
       expect(view.$el.find('#child1').length).toBe(0);
     });
   });
-
-  describe("removeChildren", function() {
-    var view, child1, child2;
-
-    beforeEach(function() {
-      view = new View;
-      child1 = new View({ id: 'child1' });
-      child2 = new View({ id: 'child2' });
-    });
-    
-    it("should remove all of the parent's children", function() {
-      spyOn(child1, 'remove');
-      spyOn(child2, 'remove');
-
-      view.add(child1);
-      view.add(child2);
-
-      view.removeChildren();
-
-      expect(child1.remove).toHaveBeenCalled();
-      expect(child2.remove).toHaveBeenCalled();
-    });
-
-    it("should be chainable", function() {
-      expect(view.removeChildren()).toBe(view);
-    });
-  });
 });
