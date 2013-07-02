@@ -1,6 +1,6 @@
 # Bacbone View
 
-Base view for yamjs components.
+A thin layer on top of Backbone's view class to add nested child views.
 
 ## Testing
 
@@ -13,27 +13,23 @@ Base view for yamjs components.
 
 Adds a child view to the view's element.
 
-### remove()
-
-Removes itself and all child views from the DOM and removes any bound events.
-
 ## Usage
 
 ```js
-var view = new View;
-var child = new View;
+var message = new Message;
+var reply = new Reply;
 
-view.add(child);
+message.add(reply);
 
-view.render();
-child.render();
+message.render();
+reply.render();
 ```
 
 Will render:
 
 ```html
-<div class="parent">
-  <div class="child">
+<div class="message">
+  <div class="reply">
   </div>
 </div>
 ```
