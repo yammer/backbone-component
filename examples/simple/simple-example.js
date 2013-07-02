@@ -27,7 +27,7 @@ var SimpleView = View.extend({
     child.render();
   },
 
-  render: function(e) {
+  render: function() {
     this.$el.html(this.html());
     this.renderCount++;
   }
