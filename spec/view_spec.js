@@ -51,18 +51,6 @@ describe("View", function() {
     it("should be chainable", function() {
       expect(view.render()).toBe(view);
     });
-    
-    it("should render all its children", function() {
-      spyOn(child1, 'render');
-      spyOn(child2, 'render');
-
-      view.add(child1);
-      view.add(child2);
-      view.render();
-
-      expect(child1.render).toHaveBeenCalled();
-      expect(child2.render).toHaveBeenCalled();
-    });
 
     it("should reattach its children", function() {
       view.add(child1);
@@ -72,6 +60,15 @@ describe("View", function() {
 
       expect(view.$el.find('#child1').length).toBe(1);
       expect(view.$el.find('#child2').length).toBe(1);
+    });
+
+    it("should delegate the child's events", function() {
+      spyOn(child1, 'delegateEvents');
+
+      view.add(child1);
+      view.render();
+
+      expect(child1.delegateEvents).toHaveBeenCalled();
     });
 
     it("should add the child element to the correct element", function() {

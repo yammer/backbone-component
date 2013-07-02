@@ -30,6 +30,7 @@ var View = Backbone.View.extend({
 
     _.each(this._children, function(child) {
       this.attach(child);
+      child.view.delegateEvents();
     }, this);
 
     return this;
