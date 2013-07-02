@@ -20,7 +20,6 @@ var SimpleView = View.extend({
 
   render: function() {
     this.$el.html(this.html());
-    View.prototype.render.apply(this, arguments);
     this.renderCount++;
   }
 });
