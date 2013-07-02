@@ -153,5 +153,9 @@ describe("View", function() {
       expect(child1.remove).toHaveBeenCalled();
       expect(child2.remove).toHaveBeenCalled();
     });
+
+    it("should be chainable", function() {
+      expect(view.remove()).toBe(view);
+    });
   });
 });
