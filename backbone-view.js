@@ -5,17 +5,10 @@ var View = Backbone.View.extend({
     Backbone.View.apply(this, arguments);
   },
 
-  attach: function(child) {
-    method = child.method || 'append';
-    var target = child.selector ? this.$(child.selector) : this.$el;
-
-    target[method](child.view.$el);
-  },
-
   add: function(view, selector, method) {
     var child = { view: view, selector: selector, method: method };
     this._children.push(child);
-    this.attach(child);
+    this._attachChild(child);
     return this;
   },
 
@@ -27,10 +20,17 @@ var View = Backbone.View.extend({
 
   render: function() {
     _.each(this._children, function(child) {
-      this.attach(child);
+      this._attachChild(child);
       child.view.delegateEvents();
     }, this);
 
     return this;
+  },
+
+  _attachChild: function(child) {
+    method = child.method || 'append';
+    var target = child.selector ? this.$(child.selector) : this.$el;
+
+    target[method](child.view.$el);
   }
 });
