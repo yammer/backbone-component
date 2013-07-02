@@ -134,6 +134,14 @@ describe("View", function() {
 
       expect(div.children().length).toBe(0);
     });
+
+    it("should remove itself from it's parent", function() {
+      view.add(child1);
+      child1.remove();
+
+      view.render();
+      expect(view.$el.find('#child1').length).toBe(0);
+    });
   });
 
   describe("removeChildren", function() {

@@ -15,12 +15,22 @@ var View = Backbone.View.extend({
 
   add: function(view, selector, method) {
     var child = { view: view, selector: selector, method: method };
+
+    var removeFromParent = function() {
+      this._children = _.without(this._children, child);
+    };
+
+    view._removeFromParent = _.bind(removeFromParent, this);
     this._children.push(child);
     this._attachChild(child);
     return this;
   },
 
+  _removeFromParent: function() {
+  },
+
   remove: function() {
+    this._removeFromParent();
     this.removeChildren();
     Backbone.View.prototype.remove.apply(this, arguments);
     return this;
