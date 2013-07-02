@@ -15,8 +15,16 @@ var SimpleView = View.extend({
     this.render();
   },
 
+  html: function() {
+    return '\
+      ' + this.cid + '\
+      Rendered: ' + this.renderCount + '\
+      <button>Render</button>\
+    '
+  },
+
   render: function() {
-    this.$el.html('<button>' + this.cid + '</button> Rendered: ' + this.renderCount);
+    this.$el.html(this.html());
     View.prototype.render.apply(this, arguments);
     this.renderCount++;
   }
