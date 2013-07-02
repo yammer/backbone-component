@@ -33,11 +33,8 @@ var SimpleView = View.extend({
   }
 });
 
-var parentView = new SimpleView({ el: '.views' });
-parentView.render();
-
 $('.add-view').click(function(e) {
-  var child = new SimpleView;
-  parentView.add(child);
-  child.render();
+  var parentView = new SimpleView();
+  parentView.render();
+  $('.views').append(parentView.$el);
 });
