@@ -12,8 +12,12 @@ var View = Backbone.View.extend({
     return this;
   },
 
-  remove: function() {
+  removeChildren: function() {
     _.invoke(_.pluck(this._children, 'view'), 'remove');
+  },
+
+  remove: function() {
+    this.removeChildren();
     Backbone.View.prototype.remove.apply(this, arguments);
     return this;
   },
