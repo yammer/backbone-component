@@ -2,13 +2,7 @@ var View = Backbone.View.extend({
 
   constructor: function() {
     this._children = [];
-
-    var render = _.bind(this.render, this);
-    this.render = function() {
-      render();
-      this._attachChildren();
-      return this;
-    };
+    this._wrapRender();
 
     Backbone.View.apply(this, arguments);
   },
@@ -21,6 +15,7 @@ var View = Backbone.View.extend({
     };
 
     view._removeFromParent = _.bind(removeFromParent, this);
+
     this._children.push(child);
     this._attachChild(child);
     return this;
@@ -39,6 +34,17 @@ var View = Backbone.View.extend({
   removeChildren: function() {
     _.invoke(_.pluck(this._children, 'view'), 'remove');
     return this;
+  },
+
+  _wrapRender: function() {
+    var wrapper = function(render) {
+      render();
+      this._attachChildren();
+      return this;
+    };
+
+    var originalRender = _.bind(this.render, this);
+    this.render = _.wrap(originalRender, wrapper);
   },
 
   _attachChild: function(child) {
