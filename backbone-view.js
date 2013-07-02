@@ -26,8 +26,6 @@ var View = Backbone.View.extend({
   },
 
   render: function() {
-    _.invoke(_.pluck(this._children, 'view'), 'render');
-
     _.each(this._children, function(child) {
       this.attach(child);
       child.view.delegateEvents();
