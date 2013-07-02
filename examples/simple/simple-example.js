@@ -5,21 +5,16 @@ var SimpleView = View.extend({
   },
 
   events: {
-    'click': 'handleClick'
-  },
-
-  handleClick: function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-
-    this.render();
+    'click .render': 'render',
+    'click .remove': 'remove'
   },
 
   html: function() {
     return '\
       ' + this.cid + '\
       Rendered: ' + this.renderCount + '\
-      <button>Render</button>\
+      <button class="render">Render</button>\
+      <button class="remove">Remove</button>\
     '
   },
 
