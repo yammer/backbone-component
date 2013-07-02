@@ -1,11 +1,10 @@
 {
   "framework": "jasmine",
   "src_files": [
+    "vendor/jquery.js",
+    "vendor/underscore.js",
+    "vendor/backbone.js",
+    "backbone-view.js",
     "spec/**/*.js"
-  ],
-  "serve_files": [
-    "specs.js"
-  ],
-  "before_tests": "make test",
-  "after_tests": "make clean"
+  ]
 }

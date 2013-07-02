@@ -1,5 +1,3 @@
-var View = require('../');
-
 describe("View", function() {
   
   describe("add", function() {

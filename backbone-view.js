@@ -1,4 +1,29 @@
-;(function(e,t,n,r){function i(r){if(!n[r]){if(!t[r]){if(e)return e(r);throw new Error("Cannot find module '"+r+"'")}var s=n[r]={exports:{}};t[r][0](function(e){var n=t[r][1][e];return i(n?n:e)},s,s.exports)}return n[r].exports}for(var s=0;s<r.length;s++)i(r[s]);return i})(typeof require!=="undefined"&&require,{1:[function(require,module,exports){
+var View = Backbone.View.extend({
 
-},{}]},{},[1])
-;
+  constructor: function() {
+    this._children = [];
+    Backbone.View.apply(this, arguments);
+  },
+
+  add: function(child, selector, method) {
+    this._children.push(child);
+
+    method = method || 'append';
+    var target = selector ? this.$(selector) : this.$el;
+
+    target[method](child.$el);
+
+    return this;
+  },
+
+  remove: function() {
+    _.invoke(this._children, 'remove');
+    Backbone.View.prototype.remove.apply(this, arguments);
+    return this;
+  },
+
+  render: function() {
+    _.invoke(this._children, 'render');
+    return this;
+  }
+});
