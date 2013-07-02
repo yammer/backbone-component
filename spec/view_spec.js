@@ -155,7 +155,7 @@ describe("View", function() {
     });
 
     it("should be chainable", function() {
-      expect(view.remove()).toBe(view);
+      expect(view.removeChildren()).toBe(view);
     });
   });
 });

@@ -14,6 +14,7 @@ var View = Backbone.View.extend({
 
   removeChildren: function() {
     _.invoke(_.pluck(this._children, 'view'), 'remove');
+    return this;
   },
 
   remove: function() {
