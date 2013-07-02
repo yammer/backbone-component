@@ -10,18 +10,12 @@ var View = Backbone.View.extend({
   add: function(view, selector, method) {
     var child = { view: view, selector: selector, method: method };
 
-    var removeFromParent = function() {
-      this._children = _.without(this._children, child);
-    };
-
-    view._removeFromParent = _.bind(removeFromParent, this);
+    var removeFromParent = _.bind(this._removeFromParent, this);
+    view._removeFromParent = _.partial(removeFromParent, child);
 
     this._children.push(child);
     this._attachChild(child);
     return this;
-  },
-
-  _removeFromParent: function() {
   },
 
   remove: function() {
@@ -34,6 +28,10 @@ var View = Backbone.View.extend({
   removeChildren: function() {
     _.invoke(_.pluck(this._children, 'view'), 'remove');
     return this;
+  },
+
+  _removeFromParent: function(child) {
+    this._children = _.without(this._children, child);
   },
 
   _wrapRender: function() {
