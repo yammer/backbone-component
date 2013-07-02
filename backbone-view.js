@@ -2,6 +2,14 @@ var View = Backbone.View.extend({
 
   constructor: function() {
     this._children = [];
+
+    var render = _.bind(this.render, this);
+    this.render = function() {
+      render();
+      this._attachChildren();
+      return this;
+    };
+
     Backbone.View.apply(this, arguments);
   },
 
@@ -20,11 +28,6 @@ var View = Backbone.View.extend({
 
   removeChildren: function() {
     _.invoke(_.pluck(this._children, 'view'), 'remove');
-    return this;
-  },
-
-  render: function() {
-    this._attachChildren();
     return this;
   },
 

@@ -43,7 +43,11 @@ describe("View", function() {
     var view, child1, child2;
 
     beforeEach(function() {
-      view = new View;
+      var CustomView = View.extend({
+        render: function() {}
+      });
+
+      view = new CustomView;
       child1 = new View({ id: 'child1' });
       child2 = new View({ id: 'child2' });
     });
