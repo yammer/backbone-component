@@ -12,23 +12,19 @@ var View = Backbone.View.extend({
     return this;
   },
 
-  removeChildren: function() {
-    _.invoke(_.pluck(this._children, 'view'), 'remove');
-    return this;
-  },
-
   remove: function() {
     this.removeChildren();
     Backbone.View.prototype.remove.apply(this, arguments);
     return this;
   },
 
-  render: function() {
-    _.each(this._children, function(child) {
-      this._attachChild(child);
-      child.view.delegateEvents();
-    }, this);
+  removeChildren: function() {
+    _.invoke(_.pluck(this._children, 'view'), 'remove');
+    return this;
+  },
 
+  render: function() {
+    this._attachChildren();
     return this;
   },
 
@@ -37,5 +33,12 @@ var View = Backbone.View.extend({
     var target = child.selector ? this.$(child.selector) : this.$el;
 
     target[method](child.view.$el);
+  },
+
+  _attachChildren: function() {
+    _.each(this._children, function(child) {
+      this._attachChild(child);
+      child.view.delegateEvents();
+    }, this);
   }
 });
