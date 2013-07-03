@@ -2,6 +2,7 @@ var View = Backbone.View.extend({
 
   constructor: function() {
     this._children = [];
+    this.append = this.add;
     this._wrapRender();
 
     Backbone.View.apply(this, arguments);

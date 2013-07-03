@@ -83,6 +83,14 @@ describe("View", function() {
     });
   });
 
+  describe("append", function() {
+    
+    it("should alias add", function() {
+      var view = new View;
+      expect(view.append).toBe(view.add);
+    });
+  });
+
   describe("remove", function() {
     var view, child1, child2;
 
