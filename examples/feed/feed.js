@@ -103,7 +103,7 @@ var Feed = View.extend({
 
   createThread: function(model) {
     var thread = new ThreadView({ model: model });
-    this.add(thread);
+    this.add(thread, null, 'prepend');
     this.render();
   }
 });
