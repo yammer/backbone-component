@@ -19,6 +19,8 @@ var Publisher = View.extend({
     return this;
   },
 
+  // creates a new Thread model and adds it to the collection
+  // if it's a thread starter publisher.
   getThread: function() {
     var thread = this.model;
 
