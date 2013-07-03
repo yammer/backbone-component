@@ -11,10 +11,16 @@ testem
 
 ## API
 
-### add(child, [selector, method])
+### append(child, [selector])
+#### alias: add
 
 Adds a child view to the view's element.
-Optionally define the selector to attach to and the attach method. Will default to `$el` and `append` respectively. 
+Optionally define the selector to attach to, which defaults to `$el`. 
+
+### prepend(child, [selector])
+
+Adds a child to the beginning of the view's element.
+Optionally define the selector to attach to, which defaults to `$el`. 
 
 ## Usage
 
@@ -34,3 +40,5 @@ Will render:
   </div>
 </div>
 ```
+
+See examples directory for more.
