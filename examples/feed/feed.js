@@ -65,6 +65,8 @@ var Publisher = View.extend({
     if (message.validate()) {
       this.getThread().addMessage(message);
     }
+
+    this.$('textarea').val('');
   }
 });
 
@@ -103,12 +105,9 @@ var ThreadView = View.extend({
   }
 });
 
-var Feed = View.extend({
+var ThreadList = View.extend({
 
   initialize: function() {
-    var publisher = new Publisher({ collection: this.collection });
-    this.add(publisher);
-
     this.listenTo(this.collection, 'add', this.createThread);
   },
 
@@ -116,6 +115,17 @@ var Feed = View.extend({
     var thread = new ThreadView({ model: model });
     this.add(thread, null, 'prepend');
     this.render();
+  }
+});
+
+var Feed = View.extend({
+
+  initialize: function() {
+    var publisher = new Publisher({ collection: this.collection });
+    this.add(publisher);
+
+    var threads = new ThreadList({ collection: this.collection });
+    this.add(threads);
   }
 });
 
