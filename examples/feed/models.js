@@ -1,3 +1,5 @@
+Backbone.sync = function() { };
+
 var Message = Backbone.Model.extend({
   validate: function() {
     return this.get('body').length > 0;

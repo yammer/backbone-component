@@ -19,19 +19,6 @@ var Publisher = View.extend({
     return this;
   },
 
-  // creates a new Thread model and adds it to the collection
-  // if it's a thread starter publisher.
-  getThread: function() {
-    var thread = this.model;
-
-    if (!thread) {
-      thread = new Thread;
-      this.collection.add(thread);
-    }
-
-    return thread;
-  },
-
   postMessage: function(e) {
     var body = this.$('textarea').val();
 
@@ -39,8 +26,10 @@ var Publisher = View.extend({
       body: body
     });
 
+    var thread = this.model || this.collection.create();
+
     if (message.validate()) {
-      this.getThread().addMessage(message);
+      thread.addMessage(message);
     }
 
     this.$('textarea').val('');
