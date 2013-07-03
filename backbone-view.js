@@ -1,4 +1,4 @@
-var View = Backbone.View.extend({
+Backbone.Component = Backbone.View.extend({
 
   constructor: function() {
     this._children = [];

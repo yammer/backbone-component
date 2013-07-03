@@ -1,11 +1,11 @@
-describe("View", function() {
+describe("Backbone.Component", function() {
   
   describe("render", function() {
     var view, child;
 
     beforeEach(function() {
-      view = new View;
-      child = new View({ id: 'child' });
+      view = new Backbone.Component;
+      child = new Backbone.Component({ id: 'child' });
     });
 
     it("should be chainable", function() {
@@ -17,13 +17,13 @@ describe("View", function() {
     var view, child1, child2;
 
     beforeEach(function() {
-      var CustomView = View.extend({
+      var CustomView = Backbone.Component.extend({
         render: function() {}
       });
 
       view = new CustomView;
-      child1 = new View({ id: 'child1' });
-      child2 = new View({ id: 'child2' });
+      child1 = new Backbone.Component({ id: 'child1' });
+      child2 = new Backbone.Component({ id: 'child2' });
     });
 
     it("should be chainable", function() {
@@ -69,7 +69,7 @@ describe("View", function() {
   describe("add", function() {
     
     it("should alias append", function() {
-      var view = new View;
+      var view = new Backbone.Component;
       expect(view.append).toBe(view.add);
     });
   });
@@ -79,12 +79,12 @@ describe("View", function() {
     var view, child1, child2;
 
     beforeEach(function() {
-      var CustomView = View.extend({
+      var CustomView = Backbone.Component.extend({
         render: function() {}
       });
 
       view = new CustomView;
-      child = new View({ id: 'child' });
+      child = new Backbone.Component({ id: 'child' });
     });
     
     it("should prepend the child", function() {
@@ -100,7 +100,7 @@ describe("View", function() {
 
     it("should pass arguments", function() {
       var spy = jasmine.createSpy();
-      var RenderView = View.extend({
+      var RenderView = Backbone.Component.extend({
         render: function(a, b) {
           spy(a, b);
         }
@@ -117,9 +117,9 @@ describe("View", function() {
     var view, child1, child2;
 
     beforeEach(function() {
-      view = new View;
-      child1 = new View({ id: 'child1' });
-      child2 = new View({ id: 'child2' });
+      view = new Backbone.Component;
+      child1 = new Backbone.Component({ id: 'child1' });
+      child2 = new Backbone.Component({ id: 'child2' });
     });
 
     it("should be chainable", function() {
