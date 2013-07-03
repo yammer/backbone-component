@@ -14,6 +14,7 @@ testem
 ### add(child, [selector, method])
 
 Adds a child view to the view's element.
+Optionally define the selector to attach to and the attach method. Will default to `$el` and `append` respectively. 
 
 ## Usage
 
