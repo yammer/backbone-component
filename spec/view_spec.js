@@ -13,7 +13,7 @@ describe("View", function() {
     });
   });
 
-  describe("add", function() {
+  describe("append", function() {
     var view, child1, child2;
 
     beforeEach(function() {
@@ -27,12 +27,12 @@ describe("View", function() {
     });
 
     it("should be chainable", function() {
-      expect(view.add(child1)).toBe(view);
+      expect(view.append(child1)).toBe(view);
     });
 
     it("should attach its children when rendered", function() {
-      view.add(child1);
-      view.add(child2);
+      view.append(child1);
+      view.append(child2);
 
       view.render();
 
@@ -41,8 +41,8 @@ describe("View", function() {
     });
 
     it("should not attach its children before it is rendered", function() {
-      view.add(child1);
-      view.add(child2);
+      view.append(child1);
+      view.append(child2);
 
       expect(view.$el.find('#child1').length).toBe(0);
       expect(view.$el.find('#child2').length).toBe(0);
@@ -51,7 +51,7 @@ describe("View", function() {
     it("should delegate the child's events when rendered", function() {
       spyOn(child1, 'delegateEvents');
 
-      view.add(child1);
+      view.append(child1);
       view.render();
 
       expect(child1.delegateEvents).toHaveBeenCalled();
@@ -59,16 +59,16 @@ describe("View", function() {
 
     it("should add the child element to the correct element", function() {
       view.$el.append('<div id="foo"></div>');
-      view.add(child1, '#foo');
+      view.append(child1, '#foo');
       view.render();
 
       expect(view.$el.find('#foo > #child1').length).toBe(1);
     });
   });
 
-  describe("append", function() {
+  describe("add", function() {
     
-    it("should alias add", function() {
+    it("should alias append", function() {
       var view = new View;
       expect(view.append).toBe(view.add);
     });

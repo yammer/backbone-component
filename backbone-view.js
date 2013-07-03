@@ -2,13 +2,13 @@ var View = Backbone.View.extend({
 
   constructor: function() {
     this._children = [];
-    this.append = this.add;
+    this.add = this.append;
     this._wrapRender();
 
     Backbone.View.apply(this, arguments);
   },
 
-  add: function(view, selector) {
+  append: function(view, selector) {
     this._addChild(view, selector, 'append');
     return this;
   },
