@@ -12,6 +12,7 @@ Backbone.Component = Backbone.View.extend({
     this._children = [];
     this.add = this.append;
     this._wrapRender();
+    this.remove = this._wrapRemove();
 
     Backbone.View.apply(this, arguments);
   },
@@ -31,14 +32,6 @@ Backbone.Component = Backbone.View.extend({
   // Optionally specify a selector within the view to attach to.
   prepend: function(view, selector) {
     this._addChild(view, selector, 'prepend');
-    return this;
-  },
-
-  // Remove itself and all children from the DOM
-  remove: function() {
-    this._removeFromParent();
-    this._removeChildren();
-    Backbone.View.prototype.remove.apply(this, arguments);
     return this;
   },
 
@@ -79,6 +72,20 @@ Backbone.Component = Backbone.View.extend({
 
     var originalRender = _.bind(this.render, this);
     this.render = _.wrap(originalRender, wrapper);
+  },
+
+  // Wrap remove to automatically remove all children and itself from 
+  // its parent.
+  _wrapRemove: function() {
+    var wrapper = function() {
+      this._removeFromParent();
+      this._removeChildren();
+      remove();
+      return this;
+    };
+
+    var originalRemove = _.bind(this.remove, this);
+    return _.wrap(originalRemove, wrapper);
   },
 
   // Attach child to the correct element and with correct method.
