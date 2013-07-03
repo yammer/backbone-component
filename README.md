@@ -18,8 +18,8 @@ Adds a child view to the view's element.
 ## Usage
 
 ```js
-var message = new Message;
-var reply = new Reply;
+var message = new MessageView;
+var reply = new ReplyView;
 
 message.add(reply);
 
