@@ -77,7 +77,7 @@ Backbone.Component = Backbone.View.extend({
   // Wrap remove to automatically remove all children and itself from 
   // its parent.
   _wrapRemove: function() {
-    var wrapper = function() {
+    var wrapper = function(remove) {
       this._removeFromParent();
       this._removeChildren();
       remove();
