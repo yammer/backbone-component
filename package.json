@@ -1,12 +1,15 @@
 {
-  "name": "view",
-  "version": "0.0.0",
-  "description": "Yammer JS view class",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name":        "view",
+  "description": "Base view for YamJS components",
+  "version":     "0.0.0",
+
+ "devDependencies": {
+    "docco":  "*",
+    "jshint": "*",
+    "testem": "*"
   },
-  "repository": "",
-  "author": "",
-  "license": "BSD"
+
+  "scripts": {
+    "test": "make"
+  }
 }
