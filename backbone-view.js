@@ -44,7 +44,8 @@ var View = Backbone.View.extend({
 
   _wrapRender: function() {
     var wrapper = function(render) {
-      render();
+      var args = Array.prototype.slice.call(arguments, 1);
+      render.apply(this, args);
       this._attachChildren();
       return this;
     };

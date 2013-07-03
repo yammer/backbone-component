@@ -96,6 +96,23 @@ describe("View", function() {
     });
   });
 
+  describe("render", function() {
+
+    it("should pass arguments", function() {
+      var spy = jasmine.createSpy();
+      var RenderView = View.extend({
+        render: function(a, b) {
+          spy(a, b);
+        }
+      });
+
+      view = new RenderView;
+      view.render("a", "b");
+
+      expect(spy).toHaveBeenCalledWith('a', 'b');
+    });
+  });
+
   describe("remove", function() {
     var view, child1, child2;
 
