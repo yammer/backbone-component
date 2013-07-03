@@ -31,10 +31,16 @@ var Publisher = View.extend({
     'click button': 'postMessage'
   },
 
-  template: '<textarea></textarea> <button>Post</button>',
+  template: _.template('\
+    <textarea placeholder="<%= placeholderText %>"></textarea>\
+    <button><%= buttonText %></button>\
+  '),
 
   render: function() {
-    this.$el.html(this.template);
+    var placeholderText = !this.model ? "What are you working on?" : "Write a reply...";
+    var buttonText = !this.model ? "Post" : "Reply";
+
+    this.$el.html(this.template({ placeholderText: placeholderText, buttonText: buttonText}));
     return this;
   },
 
