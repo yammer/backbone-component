@@ -1,4 +1,4 @@
-# Bacbone View
+# Backbone View
 
 A thin layer on top of Backbone's view class to add nested child views.
 
