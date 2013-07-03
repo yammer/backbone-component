@@ -24,7 +24,6 @@ var reply = new Reply;
 message.add(reply);
 
 message.render();
-reply.render();
 ```
 
 Will render:
