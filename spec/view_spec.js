@@ -1,6 +1,6 @@
 describe("View", function() {
   
-  describe("add", function() {
+  describe("render", function() {
     var view, child;
 
     beforeEach(function() {
@@ -9,44 +9,11 @@ describe("View", function() {
     });
 
     it("should be chainable", function() {
-      expect(view.add(child)).toBe(view);
-    });
-    
-    it("should add the child element", function() {
-      view.add(child);
-      expect(view.$el.find('#child').length).toBe(1);
-    });
-
-    it("should render the child", function() {
-      spyOn(child, 'render');
-      view.add(child);
-
-      expect(child.render).toHaveBeenCalled();
-    });
-
-    it("should add the child element to the correct element", function() {
-      view.$el.append('<div id="foo"></div>');
-      view.add(child, '#foo');
-
-      expect(view.$el.find('#foo > #child').length).toBe(1);
-    });
-
-    it("should use the correct attach method", function() {
-      view.$el.append('<div id="foo"><div id="bar"></div></div>');
-      view.add(child, '#foo', 'prepend');
-
-      expect(view.$el.find('#foo > #child:first-child').length).toBe(1);
-    });
-
-    it("should use append as default attach method", function() {
-      view.$el.append('<div id="foo"><div id="bar"></div></div>');
-      view.add(child, '#foo');
-
-      expect(view.$el.find('#foo > #child:last-child').length).toBe(1);
+      expect(view.render()).toBe(view);
     });
   });
 
-  describe("render", function() {
+  describe("add", function() {
     var view, child1, child2;
 
     beforeEach(function() {
@@ -60,10 +27,10 @@ describe("View", function() {
     });
 
     it("should be chainable", function() {
-      expect(view.render()).toBe(view);
+      expect(view.add(child1)).toBe(view);
     });
 
-    it("should reattach its children", function() {
+    it("should attach its children when rendered", function() {
       view.add(child1);
       view.add(child2);
 
@@ -73,7 +40,15 @@ describe("View", function() {
       expect(view.$el.find('#child2').length).toBe(1);
     });
 
-    it("should delegate the child's events", function() {
+    it("should not attach its children before it is rendered", function() {
+      view.add(child1);
+      view.add(child2);
+
+      expect(view.$el.find('#child1').length).toBe(0);
+      expect(view.$el.find('#child2').length).toBe(0);
+    });
+
+    it("should delegate the child's events when rendered", function() {
       spyOn(child1, 'delegateEvents');
 
       view.add(child1);

@@ -14,7 +14,6 @@ var View = Backbone.View.extend({
     view._removeFromParent = _.partial(removeFromParent, child);
 
     this._children.push(child);
-    this._attachChild(child);
     return this;
   },
 
