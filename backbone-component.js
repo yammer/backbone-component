@@ -23,6 +23,7 @@ Backbone.Component = Backbone.View.extend({
 
   // Add a child view to the end of the element.
   // Optionally specify a selector within the view to attach to.
+  // Aliased to `add`.
   append: function(view, selector) {
     this._addChild(view, selector, 'append');
     return this;
