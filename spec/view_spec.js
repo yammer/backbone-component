@@ -64,23 +64,6 @@ describe("View", function() {
 
       expect(view.$el.find('#foo > #child1').length).toBe(1);
     });
-
-    it("should use the correct attach method", function() {
-      view.$el.append('<div id="foo"><div id="bar"></div></div>');
-      view.add(child1, '#foo', 'prepend');
-      view.render();
-
-      expect(view.$el.find('#foo > #child1:first-child').length).toBe(1);
-    });
-
-    it("should use append as default attach method", function() {
-      view.$el.append('<div id="foo"><div id="bar"></div></div>');
-      view.add(child1, '#foo');
-
-      view.render();
-
-      expect(view.$el.find('#foo > #child1:last-child').length).toBe(1);
-    });
   });
 
   describe("append", function() {
@@ -88,6 +71,28 @@ describe("View", function() {
     it("should alias add", function() {
       var view = new View;
       expect(view.append).toBe(view.add);
+    });
+  });
+
+  describe("prepend", function() {
+
+    var view, child1, child2;
+
+    beforeEach(function() {
+      var CustomView = View.extend({
+        render: function() {}
+      });
+
+      view = new CustomView;
+      child = new View({ id: 'child' });
+    });
+    
+    it("should prepend the child", function() {
+      view.$el.append('<div id="foo"></div>');
+      view.prepend(child);
+      view.render();
+
+      expect(view.$el.find('#child:first-child').length).toBe(1);
     });
   });
 

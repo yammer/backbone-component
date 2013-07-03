@@ -8,13 +8,13 @@ var View = Backbone.View.extend({
     Backbone.View.apply(this, arguments);
   },
 
-  add: function(view, selector, method) {
-    var child = { view: view, selector: selector, method: method };
+  add: function(view, selector) {
+    this._addChild(view, selector, 'append');
+    return this;
+  },
 
-    var removeFromParent = _.bind(this._removeFromParent, this);
-    view._removeFromParent = _.partial(removeFromParent, child);
-
-    this._children.push(child);
+  prepend: function(view, selector) {
+    this._addChild(view, selector, 'prepend');
     return this;
   },
 
@@ -23,6 +23,15 @@ var View = Backbone.View.extend({
     this._removeChildren();
     Backbone.View.prototype.remove.apply(this, arguments);
     return this;
+  },
+
+  _addChild: function(view, selector, method) {
+    var child = { view: view, selector: selector, method: method };
+
+    var removeFromParent = _.bind(this._removeFromParent, this);
+    view._removeFromParent = _.partial(removeFromParent, child);
+
+    this._children.push(child);
   },
 
   _removeChildren: function() {
