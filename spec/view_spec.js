@@ -17,6 +17,13 @@ describe("View", function() {
       expect(view.$el.find('#child').length).toBe(1);
     });
 
+    it("should render the child", function() {
+      spyOn(child, 'render');
+      view.add(child);
+
+      expect(child.render).toHaveBeenCalled();
+    });
+
     it("should add the child element to the correct element", function() {
       view.$el.append('<div id="foo"></div>');
       view.add(child, '#foo');
