@@ -26,9 +26,8 @@ var Publisher = View.extend({
       body: body
     });
 
-    var thread = this.model || this.collection.create();
-
-    if (message.validate()) {
+    if (message.isValid()) {
+      var thread = this.model || this.collection.create();
       thread.addMessage(message);
     }
 

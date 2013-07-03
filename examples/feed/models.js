@@ -2,7 +2,9 @@ Backbone.sync = function() { };
 
 var Message = Backbone.Model.extend({
   validate: function() {
-    return this.get('body').length > 0;
+    if (this.get('body').length === 0) {
+      return "body can't be empty";
+    }
   }
 });
 
