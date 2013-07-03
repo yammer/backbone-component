@@ -4,8 +4,10 @@ A thin layer on top of Backbone's view class to add nested child views.
 
 ## Testing
 
-  [sudo] npm install testem -g
-  testem
+```sh
+[sudo] npm install testem -g
+testem
+```
 
 ## API
 
