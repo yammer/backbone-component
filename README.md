@@ -23,7 +23,6 @@ var message = new MessageView;
 var reply = new ReplyView;
 
 message.add(reply);
-
 message.render();
 ```
 
