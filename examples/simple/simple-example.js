@@ -24,7 +24,7 @@ var SimpleView = View.extend({
     if (e) e.stopPropagation();
     var child = new SimpleView;
     this.add(child);
-    child.render();
+    this.render();
   },
 
   render: function() {
