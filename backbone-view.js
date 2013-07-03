@@ -44,7 +44,7 @@ var View = Backbone.View.extend({
   },
 
   _attachChild: function(child) {
-    method = child.method || 'append';
+    var method = child.method || 'append';
     var target = child.selector ? this.$(child.selector) : this.$el;
 
     child.view.render();
