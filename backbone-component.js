@@ -11,7 +11,7 @@ Backbone.Component = Backbone.View.extend({
   constructor: function() {
     this._children = [];
     this.add = this.append;
-    this._wrapRender();
+    this.render = this._wrapRender();
     this.remove = this._wrapRemove();
 
     Backbone.View.apply(this, arguments);
@@ -71,7 +71,7 @@ Backbone.Component = Backbone.View.extend({
     };
 
     var originalRender = _.bind(this.render, this);
-    this.render = _.wrap(originalRender, wrapper);
+    return _.wrap(originalRender, wrapper);
   },
 
   // Wrap remove to automatically remove all children and itself from 
