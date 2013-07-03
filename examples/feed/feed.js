@@ -1,4 +1,7 @@
 var Message = Backbone.Model.extend({
+  validate: function() {
+    return this.get('body').length > 0;
+  }
 });
 
 var Messages = Backbone.Collection.extend({
@@ -53,7 +56,9 @@ var Publisher = View.extend({
       body: body
     });
 
-    this.getThread().addMessage(message);
+    if (message.validate()) {
+      this.getThread().addMessage(message);
+    }
   }
 });
 
