@@ -55,4 +55,4 @@ clean:
 	$(info Cleaning project...)
 	@rm -rf $(COV_FILE)
 
-.PHONY: install lint test testem doc clean
+.PHONY: install lint test testem doc pages clean
