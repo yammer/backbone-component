@@ -67,7 +67,6 @@ Backbone.Component = Backbone.View.extend({
   // Wrap render to automatically attach all children.
   _wrapRender: function() {
     var wrapper = function(render) {
-      var args = Array.prototype.slice.call(arguments, 1);
       render.apply(this, _.rest(arguments));
       this._attachChildren();
       return this;
