@@ -195,10 +195,6 @@ the element and attach method it should use.</p>
             
             <div class="content"><div class='highlight'><pre>  _removeChildren: <span class="keyword">function</span>() {
     _.invoke(_.pluck(<span class="keyword">this</span>._children, <span class="string">'view'</span>), <span class="string">'remove'</span>);
-  },
-
-  _removeFromParent: <span class="keyword">function</span>(child) {
-    <span class="keyword">this</span>._children = _.without(<span class="keyword">this</span>._children, child);
   },</pre></div></div>
             
         </li>
@@ -209,6 +205,23 @@ the element and attach method it should use.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Template method to remove a view from its parent.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  _removeFromParent: <span class="keyword">function</span>(child) {
+    <span class="keyword">this</span>._children = _.without(<span class="keyword">this</span>._children, child);
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Wrap render to automatically attach all children.</p>
 
@@ -229,11 +242,11 @@ the element and attach method it should use.</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Wrap remove to automatically remove all children and itself from
 its parent.</p>
@@ -257,11 +270,11 @@ its parent.</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Attach child to the correct element and with correct method.
 Defaults to <code>this.$el</code> and <code>append</code>.</p>
@@ -279,11 +292,11 @@ Defaults to <code>this.$el</code> and <code>append</code>.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>Attach all children in the right order.
 Call <code>delegateEvents</code> for each child view so handlers are correctly
