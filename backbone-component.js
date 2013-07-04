@@ -67,7 +67,7 @@ Backbone.Component = Backbone.View.extend({
   _wrapRender: function() {
     var wrapper = function(render) {
       var args = Array.prototype.slice.call(arguments, 1);
-      render.apply(this, args);
+      render.apply(this, _.rest(arguments));
       this._attachChildren();
       return this;
     };
@@ -82,9 +82,7 @@ Backbone.Component = Backbone.View.extend({
     var wrapper = function(remove) {
       this._removeFromParent();
       this._removeChildren();
-
-      var args = Array.prototype.slice.call(arguments, 1);
-      remove.apply(this, args);
+      remove.apply(this, _.rest(arguments));
       return this;
     };
 
