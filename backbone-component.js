@@ -96,8 +96,7 @@ Backbone.Component = Backbone.View.extend({
     var method = child.method || 'append';
     var target = child.selector ? this.$(child.selector) : this.$el;
 
-    child.view.render();
-    target[method](child.view.$el);
+    target[method](child.view.render().$el);
   },
 
   // Attach all children in the right order.
