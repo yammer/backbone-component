@@ -175,8 +175,7 @@ the element and attach method it should use.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="keyword">var</span> removeFromParent = _.bind(<span class="keyword">this</span>._removeFromParent, <span class="keyword">this</span>);
-    view._removeFromParent = _.partial(removeFromParent, child);
+            <div class="content"><div class='highlight'><pre>    view._removeFromParent = _.bind(<span class="keyword">this</span>._removeFromParent, <span class="keyword">this</span>, child);
 
     <span class="keyword">this</span>._children.push(child);
   },</pre></div></div>

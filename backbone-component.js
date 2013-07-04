@@ -48,8 +48,7 @@ Backbone.Component = Backbone.View.extend({
 
     // Assign a method to the child so it can remove itself from
     // `_children` array when it's removed.
-    var removeFromParent = _.bind(this._removeFromParent, this);
-    view._removeFromParent = _.partial(removeFromParent, child);
+    view._removeFromParent = _.bind(this._removeFromParent, this, child);
 
     this._children.push(child);
   },
