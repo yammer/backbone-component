@@ -1,4 +1,4 @@
-var SimpleView = View.extend({
+var SimpleView = Backbone.Component.extend({
 
   initialize: function() {
     this.renderCount = 0;
