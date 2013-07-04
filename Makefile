@@ -12,8 +12,8 @@ COV_FILE   := $(ROOT_DIR)/coverage.html
 
 # Commands
 
+GIT    := $(shell which git)
 NPM    := $(shell which npm)
-JSCOV  := $(shell which jscoverage)
 DOCCO  := $(NPMBIN_DIR)/docco
 JSHINT := $(NPMBIN_DIR)/jshint
 TESTEM := $(NPMBIN_DIR)/testem
