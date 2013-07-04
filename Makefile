@@ -47,7 +47,8 @@ doc:
 pages:
 	$(info Updating GitHub pages...)
 	@$(GIT) checkout gh-pages
-	@$(GIT) merge -s subtree master
+	@$(GIT) merge --no-edit --strategy subtree master
+	@$(GIT) push origin gh-pages
 	@$(GIT) checkout master
 
 clean:
