@@ -49,7 +49,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Override constructor so Components can use initialise normally.</p>
+              <p>Override constructor so Components can use <code>initialize</code> normally.</p>
 
             </div>
             
@@ -132,14 +132,13 @@ Optionally specify a selector within the view to attach to.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>Initial setup. Create new child array, alias add to append, and wrap
-render and remove methods.</p>
+              <p>Initial setup. Create new child array, and wrap <code>render</code> and <code>remove</code>
+methods.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>  _setup: <span class="keyword">function</span>() {
     <span class="keyword">this</span>._children = [];
-    <span class="keyword">this</span>.add = <span class="keyword">this</span>.append;
     <span class="keyword">this</span>.render = <span class="keyword">this</span>._wrapRender();
     <span class="keyword">this</span>.remove = <span class="keyword">this</span>._wrapRemove();
   },</pre></div></div>
@@ -159,7 +158,8 @@ the element and attach method it should use.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  _addChild: <span class="keyword">function</span>(view, selector, method) {
-    <span class="keyword">var</span> child = { view: view, selector: selector, method: method };</pre></div></div>
+    <span class="keyword">var</span> target = selector ? <span class="keyword">this</span>.$(selector) : <span class="keyword">this</span>.$el;
+    <span class="keyword">var</span> child = { view: view, target: target, method: method || <span class="string">'append'</span> };</pre></div></div>
             
         </li>
         
@@ -170,8 +170,8 @@ the element and attach method it should use.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>Assign a method to the child so it can remove itself from
-<code>_children</code> array when it&#39;s removed.</p>
+              <p>Assign a method to the child so it can remove itself from <code>_children</code>
+array when it&#39;s removed.</p>
 
             </div>
             
@@ -189,7 +189,7 @@ the element and attach method it should use.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <p>Call remove for each child added to the view.</p>
+              <p>Call <code>remove</code> for each child added to the view.</p>
 
             </div>
             
@@ -223,14 +223,13 @@ the element and attach method it should use.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>Wrap render to automatically attach all children.</p>
+              <p>Wrap <code>render</code> to automatically attach all children.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>  _wrapRender: <span class="keyword">function</span>() {
     <span class="keyword">var</span> wrapper = <span class="keyword">function</span>(render) {
-      <span class="keyword">var</span> args = Array.prototype.slice.call(arguments, <span class="number">1</span>);
-      render.apply(<span class="keyword">this</span>, args);
+      render.apply(<span class="keyword">this</span>, _.rest(arguments));
       <span class="keyword">this</span>._attachChildren();
       <span class="keyword">return</span> <span class="keyword">this</span>;
     };
@@ -248,8 +247,8 @@ the element and attach method it should use.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <p>Wrap remove to automatically remove all children and itself from
-its parent.</p>
+              <p>Wrap <code>remove</code> to automatically remove all children and itself from its
+parent.</p>
 
             </div>
             
@@ -257,9 +256,7 @@ its parent.</p>
     <span class="keyword">var</span> wrapper = <span class="keyword">function</span>(remove) {
       <span class="keyword">this</span>._removeFromParent();
       <span class="keyword">this</span>._removeChildren();
-
-      <span class="keyword">var</span> args = Array.prototype.slice.call(arguments, <span class="number">1</span>);
-      remove.apply(<span class="keyword">this</span>, args);
+      remove.apply(<span class="keyword">this</span>, _.rest(arguments));
       <span class="keyword">return</span> <span class="keyword">this</span>;
     };
 
@@ -276,17 +273,13 @@ its parent.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>Attach child to the correct element and with correct method.
+              <p>Attach child to the correct element and with the correct method.
 Defaults to <code>this.$el</code> and <code>append</code>.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>  _attachChild: <span class="keyword">function</span>(child) {
-    <span class="keyword">var</span> method = child.method || <span class="string">'append'</span>;
-    <span class="keyword">var</span> target = child.selector ? <span class="keyword">this</span>.$(child.selector) : <span class="keyword">this</span>.$el;
-
-    child.view.render();
-    target[method](child.view.$el);
+    child.target[child.method](child.view.render().$el);
   },</pre></div></div>
             
         </li>
@@ -298,9 +291,8 @@ Defaults to <code>this.$el</code> and <code>append</code>.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>Attach all children in the right order.
-Call <code>delegateEvents</code> for each child view so handlers are correctly
-bound after being attached.</p>
+              <p>Attach all children in the right order, and call <code>delegateEvents</code> for each
+child view so handlers are correctly bound after being attached.</p>
 
             </div>
             
@@ -311,6 +303,21 @@ bound after being attached.</p>
     }, <span class="keyword">this</span>);
   }
 });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Alias <code>add</code> to <code>append</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Backbone.Component.prototype.add = Backbone.Component.prototype.append;</pre></div></div>
             
         </li>
         
