@@ -86,7 +86,9 @@ Backbone.Component = Backbone.View.extend({
     var wrapper = function(remove) {
       this._removeFromParent();
       this._removeChildren();
-      remove();
+
+      var args = Array.prototype.slice.call(arguments, 1);
+      remove.apply(this, args);
       return this;
     };
 
