@@ -59,6 +59,7 @@ Backbone.Component = Backbone.View.extend({
     _.invoke(_.pluck(this._children, 'view'), 'remove');
   },
 
+  // Template method to remove a view from its parent.
   _removeFromParent: function(child) {
     this._children = _.without(this._children, child);
   },
