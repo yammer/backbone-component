@@ -158,8 +158,7 @@ the element and attach method it should use.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  _addChild: <span class="keyword">function</span>(view, selector, method) {
-    <span class="keyword">var</span> target = selector ? <span class="keyword">this</span>.$(selector) : <span class="keyword">this</span>.$el;
-    <span class="keyword">var</span> child = { view: view, target: target, method: method || <span class="string">'append'</span> };</pre></div></div>
+    <span class="keyword">var</span> child = { view: view, selector: selector, method: method || <span class="string">'append'</span> };</pre></div></div>
             
         </li>
         
@@ -279,7 +278,8 @@ Defaults to <code>this.$el</code> and <code>append</code>.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  _attachChild: <span class="keyword">function</span>(child) {
-    child.target[child.method](child.view.render().$el);
+    <span class="keyword">var</span> target = child.selector ? <span class="keyword">this</span>.$(child.selector) : <span class="keyword">this</span>.$el;
+    target[child.method](child.view.render().$el);
   },</pre></div></div>
             
         </li>
