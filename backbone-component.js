@@ -7,13 +7,9 @@
 
 Backbone.Component = Backbone.View.extend({
 
-  // Override constructor so Components can use initialise as normal.
+  // Override constructor so Components can use initialise normally.
   constructor: function() {
-    this._children = [];
-    this.add = this.append;
-    this.render = this._wrapRender();
-    this.remove = this._wrapRemove();
-
+    this._setup();
     Backbone.View.apply(this, arguments);
   },
 
@@ -40,8 +36,17 @@ Backbone.Component = Backbone.View.extend({
   // ----------
   // ----------
 
-  // Add a child view to an internal array keeping a reference to
-  // element and attach method it should use.
+  // Initial setup. Create new child array, alias add to append, and wrap
+  // render and remove methods.
+  _setup: function() {
+    this._children = [];
+    this.add = this.append;
+    this.render = this._wrapRender();
+    this.remove = this._wrapRemove();
+  },
+
+  // Add a child view to an internal array, keeping a reference to
+  // the element and attach method it should use.
   _addChild: function(view, selector, method) {
     var child = { view: view, selector: selector, method: method };
 
