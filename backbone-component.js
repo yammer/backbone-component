@@ -44,8 +44,7 @@ Backbone.Component = Backbone.View.extend({
   // Add a child view to an internal array, keeping a reference to
   // the element and attach method it should use.
   _addChild: function(view, selector, method) {
-    var target = selector ? this.$(selector) : this.$el;
-    var child = { view: view, target: target, method: method || 'append' };
+    var child = { view: view, selector: selector, method: method || 'append' };
 
     // Assign a method to the child so it can remove itself from
     // `_children` array when it's removed.
@@ -93,7 +92,8 @@ Backbone.Component = Backbone.View.extend({
   // Attach child to the correct element and with correct method.
   // Defaults to `this.$el` and `append`.
   _attachChild: function(child) {
-    child.target[child.method](child.view.render().$el);
+    var target = child.selector ? this.$(child.selector) : this.$el;
+    target[child.method](child.view.render().$el);
   },
 
   // Attach all children in the right order.
