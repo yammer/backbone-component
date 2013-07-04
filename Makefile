@@ -41,8 +41,14 @@ testem:
 	@$(TESTEM)
 
 doc:
-	$(info Generating documentation)
+	$(info Generating documentation...)
 	@$(DOCCO) $(MAIN_FILE)
+
+pages:
+	$(info Updating GitHub pages...)
+	@$(GIT) checkout gh-pages
+	@$(GIT) merge -s subtree master
+	@$(GIT) checkout master
 
 clean:
 	$(info Cleaning project...)
