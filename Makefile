@@ -7,7 +7,7 @@ TEST_DIR   := $(ROOT_DIR)/spec
 NPM_DIR    := $(ROOT_DIR)/node_modules
 NPMBIN_DIR := $(NPM_DIR)/.bin
 
-MAIN_FILE  := $(ROOT_DIR)/backbone-view.js
+MAIN_FILE  := $(ROOT_DIR)/backbone-component.js
 COV_FILE   := $(ROOT_DIR)/coverage.html
 
 # Commands
