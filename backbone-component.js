@@ -1,6 +1,6 @@
 // Backbone.Component
 // ==================
-// 
+//
 // A thin layer on top of Backbone's view class to add nested child views.
 
 Backbone.Component = Backbone.View.extend({
@@ -76,7 +76,7 @@ Backbone.Component = Backbone.View.extend({
     return _.wrap(originalRender, wrapper);
   },
 
-  // Wrap remove to automatically remove all children and itself from 
+  // Wrap remove to automatically remove all children and itself from
   // its parent.
   _wrapRemove: function() {
     var wrapper = function(remove) {
