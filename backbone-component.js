@@ -2,8 +2,6 @@
 // ==================
 // 
 // A thin layer on top of Backbone's view class to add nested child views.
-//
-// ---
 
 Backbone.Component = Backbone.View.extend({
 
@@ -14,7 +12,6 @@ Backbone.Component = Backbone.View.extend({
   },
 
   // Public API
-  // ----------
   // ----------
 
   // Add a child view to the end of the element.
@@ -33,7 +30,6 @@ Backbone.Component = Backbone.View.extend({
   },
 
   // Private methods
-  // ----------
   // ----------
 
   // Initial setup. Create new child array, alias add to append, and wrap
