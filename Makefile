@@ -12,8 +12,8 @@ COV_FILE   := $(ROOT_DIR)/coverage.html
 
 # Commands
 
+GIT    := $(shell which git)
 NPM    := $(shell which npm)
-JSCOV  := $(shell which jscoverage)
 DOCCO  := $(NPMBIN_DIR)/docco
 JSHINT := $(NPMBIN_DIR)/jshint
 TESTEM := $(NPMBIN_DIR)/testem
@@ -47,7 +47,8 @@ doc:
 pages:
 	$(info Updating GitHub pages...)
 	@$(GIT) checkout gh-pages
-	@$(GIT) merge -s subtree master
+	@$(GIT) merge --no-edit --strategy subtree master
+	@$(GIT) push origin gh-pages
 	@$(GIT) checkout master
 
 clean:
