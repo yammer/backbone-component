@@ -5,7 +5,7 @@
 
 Backbone.Component = Backbone.View.extend({
 
-  // Override constructor so Components can use initialise normally.
+  // Override constructor so Components can use `initialize` normally.
   constructor: function() {
     this._setup();
     Backbone.View.apply(this, arguments);
@@ -32,11 +32,10 @@ Backbone.Component = Backbone.View.extend({
   // Private methods
   // ----------
 
-  // Initial setup. Create new child array, alias add to append, and wrap
-  // render and remove methods.
+  // Initial setup. Create new child array, and wrap `render` and `remove`
+  // methods.
   _setup: function() {
     this._children = [];
-    this.add = this.append;
     this.render = this._wrapRender();
     this.remove = this._wrapRemove();
   },
@@ -46,14 +45,14 @@ Backbone.Component = Backbone.View.extend({
   _addChild: function(view, selector, method) {
     var child = { view: view, selector: selector, method: method || 'append' };
 
-    // Assign a method to the child so it can remove itself from
-    // `_children` array when it's removed.
+    // Assign a method to the child so it can remove itself from `_children`
+    // array when it's removed.
     view._removeFromParent = _.bind(this._removeFromParent, this, child);
 
     this._children.push(child);
   },
 
-  // Call remove for each child added to the view.
+  // Call `remove` for each child added to the view.
   _removeChildren: function() {
     _.invoke(_.pluck(this._children, 'view'), 'remove');
   },
@@ -63,7 +62,7 @@ Backbone.Component = Backbone.View.extend({
     this._children = _.without(this._children, child);
   },
 
-  // Wrap render to automatically attach all children.
+  // Wrap `render` to automatically attach all children.
   _wrapRender: function() {
     var wrapper = function(render) {
       render.apply(this, _.rest(arguments));
@@ -75,8 +74,8 @@ Backbone.Component = Backbone.View.extend({
     return _.wrap(originalRender, wrapper);
   },
 
-  // Wrap remove to automatically remove all children and itself from
-  // its parent.
+  // Wrap `remove` to automatically remove all children and itself from its
+  // parent.
   _wrapRemove: function() {
     var wrapper = function(remove) {
       this._removeFromParent();
@@ -89,16 +88,15 @@ Backbone.Component = Backbone.View.extend({
     return _.wrap(originalRemove, wrapper);
   },
 
-  // Attach child to the correct element and with correct method.
+  // Attach child to the correct element and with the correct method.
   // Defaults to `this.$el` and `append`.
   _attachChild: function(child) {
     var target = child.selector ? this.$(child.selector) : this.$el;
     target[child.method](child.view.render().$el);
   },
 
-  // Attach all children in the right order.
-  // Call `delegateEvents` for each child view so handlers are correctly
-  // bound after being attached.
+  // Attach all children in the right order, and call `delegateEvents` for each
+  // child view so handlers are correctly bound after being attached.
   _attachChildren: function() {
     _.each(this._children, function(child) {
       this._attachChild(child);
@@ -106,3 +104,6 @@ Backbone.Component = Backbone.View.extend({
     }, this);
   }
 });
+
+// Alias `add` to `append`.
+Backbone.Component.prototype.add = Backbone.Component.prototype.append;
