@@ -30,7 +30,7 @@ Backbone.Component = Backbone.View.extend({
   },
 
   // Private methods
-  // ----------
+  // ---------------
 
   // Initial setup. Create new child array, and wrap `render` and `remove`
   // methods.
