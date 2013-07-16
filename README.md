@@ -1,4 +1,4 @@
-# Backbone View
+# Backbone Component
 
 A thin layer on top of Backbone's view class to add nested child views.
 
@@ -30,8 +30,8 @@ Optionally define the selector to attach to, which defaults to `$el`.
 ## Usage
 
 ```js
-var message = new MessageView;
-var reply = new ReplyView;
+var message = new MessageView();
+var reply = new ReplyView();
 
 message.add(reply);
 message.render();
@@ -46,4 +46,4 @@ Will render:
 </div>
 ```
 
-See examples directory for more.
+See *examples* directory for more.
