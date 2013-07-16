@@ -1,5 +1,4 @@
 var SimpleView = Backbone.Component.extend({
-
   template: _.template('\
     <%=id%>\
     Rendered: <%=count%>\
@@ -8,20 +7,20 @@ var SimpleView = Backbone.Component.extend({
     <button class="add-child">Add child</button>\
   '),
 
-  initialize: function() {
-    this.renderCount = 0;
-  },
-
   events: {
     'click .render': 'render',
     'click .remove': 'remove',
     'click .add-child': 'addChild'
   },
 
+  initialize: function() {
+    this.renderCount = 0;
+  },
+
   addChild: function(e) {
     e.stopPropagation();
 
-    var child = new SimpleView;
+    var child = new SimpleView();
     this.add(child);
     this.render();
   },

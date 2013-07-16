@@ -1,4 +1,4 @@
-Backbone.sync = function() { };
+Backbone.sync = function() {};
 
 var Message = Backbone.Model.extend({
   validate: function() {
@@ -13,9 +13,8 @@ var Messages = Backbone.Collection.extend({
 });
 
 var Thread = Backbone.Model.extend({
-
   initialize: function() {
-    this.messages = new Messages;
+    this.messages = new Messages();
   },
 
   addMessage: function(message) {
@@ -26,4 +25,3 @@ var Thread = Backbone.Model.extend({
 var Threads = Backbone.Collection.extend({
   model: Thread
 });
-

@@ -1,5 +1,4 @@
 var PublisherView = Backbone.Component.extend({
-
   className: 'publisher',
 
   events: {
@@ -22,9 +21,7 @@ var PublisherView = Backbone.Component.extend({
   postMessage: function(e) {
     var body = this.$('textarea').val();
 
-    var message = new Message({
-      body: body
-    });
+    var message = new Message({ body: body });
 
     if (message.isValid()) {
       var thread = this.model || this.collection.create();
@@ -36,7 +33,6 @@ var PublisherView = Backbone.Component.extend({
 });
 
 var MessageView = Backbone.Component.extend({
-
   className: 'message',
 
   render: function() {
@@ -47,10 +43,11 @@ var MessageView = Backbone.Component.extend({
 });
 
 var ThreadView = Backbone.Component.extend({
-
   className: 'thread',
 
-  template: '<div class="messages"></div>',
+  template: _.template('\
+    <div class="messages"></div>\
+  '),
 
   initialize: function() {
     var publisher = new PublisherView({ model: this.model });
@@ -66,12 +63,11 @@ var ThreadView = Backbone.Component.extend({
   },
 
   render: function() {
-    this.$el.html(this.template);
+    this.$el.html(this.template());
   }
 });
 
 var ThreadListView = Backbone.Component.extend({
-
   initialize: function() {
     this.listenTo(this.collection, 'add', this.createThread);
   },
@@ -84,7 +80,6 @@ var ThreadListView = Backbone.Component.extend({
 });
 
 var FeedView = Backbone.Component.extend({
-
   initialize: function() {
     var publisher = new PublisherView({ collection: this.collection });
     this.add(publisher);
