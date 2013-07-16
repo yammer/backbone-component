@@ -27,7 +27,7 @@ var SimpleView = Backbone.Component.extend({
   },
 
   render: function() {
-    this.$el.html(this.template({ id: this.cid, count: this.renderCount++ }));
+    this.$el.html(this.template({ id: this.cid, count: ++this.renderCount }));
     return this;
   }
 });
