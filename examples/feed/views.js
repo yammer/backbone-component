@@ -1,4 +1,4 @@
-var Publisher = Backbone.Component.extend({
+var PublisherView = Backbone.Component.extend({
 
   className: 'publisher',
 
@@ -53,7 +53,7 @@ var ThreadView = Backbone.Component.extend({
   template: '<div class="messages"></div>',
 
   initialize: function() {
-    var publisher = new Publisher({ model: this.model });
+    var publisher = new PublisherView({ model: this.model });
     this.add(publisher);
 
     this.listenTo(this.model.messages, 'add', this.createMessage);
@@ -70,7 +70,7 @@ var ThreadView = Backbone.Component.extend({
   }
 });
 
-var ThreadList = Backbone.Component.extend({
+var ThreadListView = Backbone.Component.extend({
 
   initialize: function() {
     this.listenTo(this.collection, 'add', this.createThread);
@@ -83,16 +83,16 @@ var ThreadList = Backbone.Component.extend({
   }
 });
 
-var Feed = Backbone.Component.extend({
+var FeedView = Backbone.Component.extend({
 
   initialize: function() {
-    var publisher = new Publisher({ collection: this.collection });
+    var publisher = new PublisherView({ collection: this.collection });
     this.add(publisher);
 
-    var threads = new ThreadList({ collection: this.collection });
+    var threads = new ThreadListView({ collection: this.collection });
     this.add(threads);
   }
 });
 
-var feed = new Feed({ el: '.feed', collection: new Threads });
+var feed = new FeedView({ el: '.feed', collection: new Threads() });
 feed.render();
