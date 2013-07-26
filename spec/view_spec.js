@@ -1,10 +1,10 @@
 describe("Backbone.Component", function() {
-  
+
   describe("render", function() {
     var view, child;
 
     beforeEach(function() {
-      view = new Backbone.Component;
+      view = new Backbone.Component();
       child = new Backbone.Component({ id: 'child' });
     });
 
@@ -21,7 +21,7 @@ describe("Backbone.Component", function() {
         render: function() {}
       });
 
-      view = new CustomView;
+      view = new CustomView();
       child1 = new Backbone.Component({ id: 'child1' });
       child2 = new Backbone.Component({ id: 'child2' });
     });
@@ -30,17 +30,16 @@ describe("Backbone.Component", function() {
       expect(view.append(child1)).toBe(view);
     });
 
-    it("should attach its children when rendered", function() {
+    it("should append its children when rendered", function() {
       view.append(child1);
       view.append(child2);
-
       view.render();
 
       expect(view.$el.find('#child1').length).toBe(1);
       expect(view.$el.find('#child2').length).toBe(1);
     });
 
-    it("should not attach its children before it is rendered", function() {
+    it("should not append its children before it is rendered", function() {
       view.append(child1);
       view.append(child2);
 
@@ -67,9 +66,9 @@ describe("Backbone.Component", function() {
   });
 
   describe("add", function() {
-    
+
     it("should alias append", function() {
-      var view = new Backbone.Component;
+      var view = new Backbone.Component();
       expect(view.append).toBe(view.add);
     });
   });
@@ -83,16 +82,22 @@ describe("Backbone.Component", function() {
         render: function() {}
       });
 
-      view = new CustomView;
+      view = new CustomView();
       child = new Backbone.Component({ id: 'child' });
     });
-    
-    it("should prepend the child", function() {
+
+    it("should prepend its children when rendered", function() {
       view.$el.append('<div id="foo"></div>');
       view.prepend(child);
       view.render();
 
       expect(view.$el.find('#child:first-child').length).toBe(1);
+    });
+
+    it("should not prepend its children before it is rendered", function() {
+      view.prepend(child);
+
+      expect(view.$el.find('#child').length).toBe(0);
     });
   });
 
@@ -106,8 +111,8 @@ describe("Backbone.Component", function() {
         }
       });
 
-      view = new RenderView;
-      view.render("a", "b");
+      view = new RenderView();
+      view.render('a', 'b');
 
       expect(spy).toHaveBeenCalledWith('a', 'b');
     });
@@ -117,7 +122,7 @@ describe("Backbone.Component", function() {
     var view, child1, child2;
 
     beforeEach(function() {
-      view = new Backbone.Component;
+      view = new Backbone.Component();
       child1 = new Backbone.Component({ id: 'child1' });
       child2 = new Backbone.Component({ id: 'child2' });
     });
@@ -125,7 +130,7 @@ describe("Backbone.Component", function() {
     it("should be chainable", function() {
       expect(view.remove()).toBe(view);
     });
-    
+
     it("should remove all children", function() {
       spyOn(child1, 'remove');
       spyOn(child2, 'remove');
