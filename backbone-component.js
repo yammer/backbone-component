@@ -111,7 +111,8 @@ Backbone.Component = Backbone.View.extend({
   // Defaults to `this.$el` and `append`.
   _attachChild: function(child) {
     var target = child.selector ? this.$(child.selector) : this.$el;
-    target[child.method](child.view.render().$el);
+    child.view.render();
+    target[child.method](child.view.$el);
   },
 
   // Attach all children in the right order, and call `delegateEvents` for each
