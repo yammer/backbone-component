@@ -116,12 +116,17 @@ Optionally specify a selector within the view to attach to.</p>
         <li id="section-7">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <h2>Private methods</h2>
+              <p>Render the existing template with the provided data.</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>  renderTemplate: <span class="keyword">function</span>(data) {
+    <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>._compile(<span class="keyword">this</span>.template)(data));
+    <span class="keyword">return</span> <span class="keyword">this</span>;
+  },</pre></div></div>
             
         </li>
         
@@ -132,15 +137,16 @@ Optionally specify a selector within the view to attach to.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>Initial setup. Create new child array, and wrap <code>render</code> and <code>remove</code>
-methods.</p>
+              <p>Wraps <code>_.template</code>. Can be replaced by any object that responds to
+<code>compile</code> and returns a compiled template function.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _setup: <span class="keyword">function</span>() {
-    <span class="keyword">this</span>._children = [];
-    <span class="keyword">this</span>.render = <span class="keyword">this</span>._wrapRender();
-    <span class="keyword">this</span>.remove = <span class="keyword">this</span>._wrapRemove();
+            <div class="content"><div class='highlight'><pre>  renderer: {
+    compile: <span class="keyword">function</span>(template) {
+      <span class="keyword">this</span>._template = <span class="keyword">this</span>._template || _.partial(_.template, template);
+      <span class="keyword">return</span> <span class="keyword">this</span>._template;
+    }
   },</pre></div></div>
             
         </li>
@@ -149,8 +155,58 @@ methods.</p>
         <li id="section-9">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h2">
                 <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h2>Private methods</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Initial setup. Create new child array, and wrap <code>render</code> and <code>remove</code>
+methods.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  _setup: <span class="keyword">function</span>() {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Mixin renderer to view instance, so that compiled templates aren&#39;t
+shared.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    _.extend(<span class="keyword">this</span>, { _compile: <span class="keyword">this</span>.renderer.compile });
+
+    <span class="keyword">this</span>._children = [];
+    <span class="keyword">this</span>.render = <span class="keyword">this</span>._wrapRender();
+    <span class="keyword">this</span>.remove = <span class="keyword">this</span>._wrapRemove();
+  },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Add a child view to an internal array, keeping a reference to
 the element and attach method it should use.</p>
@@ -163,11 +219,11 @@ the element and attach method it should use.</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Assign a method to the child so it can remove itself from <code>_children</code>
 array when it&#39;s removed.</p>
@@ -182,11 +238,11 @@ array when it&#39;s removed.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Call <code>remove</code> for each child added to the view.</p>
 
@@ -199,11 +255,11 @@ array when it&#39;s removed.</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Template method to remove a view from its parent.</p>
 
@@ -216,11 +272,11 @@ array when it&#39;s removed.</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>Wrap <code>render</code> to automatically attach all children.</p>
 
@@ -240,11 +296,11 @@ array when it&#39;s removed.</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>Wrap <code>remove</code> to automatically remove all children and itself from its
 parent.</p>
@@ -266,11 +322,11 @@ parent.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Attach child to the correct element and with the correct method.
 Defaults to <code>this.$el</code> and <code>append</code>.</p>
@@ -279,17 +335,18 @@ Defaults to <code>this.$el</code> and <code>append</code>.</p>
             
             <div class="content"><div class='highlight'><pre>  _attachChild: <span class="keyword">function</span>(child) {
     <span class="keyword">var</span> target = child.selector ? <span class="keyword">this</span>.$(child.selector) : <span class="keyword">this</span>.$el;
-    target[child.method](child.view.render().$el);
+    child.view.render();
+    target[child.method](child.view.$el);
   },</pre></div></div>
             
         </li>
         
         
-        <li id="section-16">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Attach all children in the right order, and call <code>delegateEvents</code> for each
 child view so handlers are correctly bound after being attached.</p>
@@ -307,11 +364,11 @@ child view so handlers are correctly bound after being attached.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Alias <code>add</code> to <code>append</code>.</p>
 
