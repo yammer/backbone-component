@@ -4,14 +4,24 @@ A thin layer on top of Backbone's view class to add nested child views.
 
 ## Install
 
+To install project dependencies:
+
 ```sh
 make install
 ```
 
 ## Testing
 
+To run tests in *development* mode:
+
 ```sh
 make testem
+```
+
+To run tests in *continuous integration* mode:
+
+```sh
+make
 ```
 
 ## API
