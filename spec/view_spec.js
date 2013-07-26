@@ -118,6 +118,53 @@ describe("Backbone.Component", function() {
     });
   });
 
+  describe("renderTemplate", function() {
+    var compile, template, view;
+
+    describe('with a mocked renderer', function() {
+      beforeEach(function() {
+        template = jasmine.createSpy();
+        compile = jasmine.createSpy().andReturn(template);
+
+        var CustomView = Backbone.Component.extend({
+          renderer: { compile: compile },
+          template: '<span class="<%= foo %>" />'
+        });
+
+        view = new CustomView();
+      });
+
+      it("should compile the template", function() {
+        view.renderTemplate();
+
+        expect(compile).toHaveBeenCalledWith('<span class="<%= foo %>" />');
+      });
+
+      it("should call the compiled template with the passed data", function() {
+        var data = { foo: 'bar' };
+        view.renderTemplate(data);
+
+        expect(template).toHaveBeenCalledWith(data);
+      });
+    });
+
+    describe('with the default renderer', function() {
+      beforeEach(function() {
+        var CustomView = Backbone.Component.extend({
+          template: '<span class="<%= foo %>" />'
+        });
+
+        view = new CustomView();
+      });
+      it("should render the template using underscore", function() {
+        var data = { foo: 'bar' };
+        view.renderTemplate(data);
+
+        expect(view.$('span.bar').length).toBe(1);
+      });
+    });
+  });
+
   describe("remove", function() {
     var view, child1, child2;
 

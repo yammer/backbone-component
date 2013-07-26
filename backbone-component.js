@@ -29,6 +29,18 @@ Backbone.Component = Backbone.View.extend({
     return this;
   },
 
+  // Render the existing template with the provided data.
+  renderTemplate: function(data) {
+    this.$el.html(this.renderer.compile(this.template)(data));
+    return this;
+  },
+
+  renderer: {
+    compile: function(template) {
+      return _.partial(_.template, template);
+    }
+  },
+
   // Private methods
   // ---------------
 
