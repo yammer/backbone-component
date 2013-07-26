@@ -31,13 +31,16 @@ Backbone.Component = Backbone.View.extend({
 
   // Render the existing template with the provided data.
   renderTemplate: function(data) {
-    this.$el.html(this.renderer.compile(this.template)(data));
+    this.$el.html(this._compile(this.template)(data));
     return this;
   },
 
+  // Wraps `_.template`. Can be replaced by any object that responds to
+  // `compile` and returns a compiled template function.
   renderer: {
     compile: function(template) {
-      return _.partial(_.template, template);
+      this._template = this._template || _.partial(_.template, template);
+      return this._template;
     }
   },
 
@@ -47,6 +50,10 @@ Backbone.Component = Backbone.View.extend({
   // Initial setup. Create new child array, and wrap `render` and `remove`
   // methods.
   _setup: function() {
+    // Mixin renderer to view instance, so that compiled templates aren't
+    // shared.
+    _.extend(this, { _compile: this.renderer.compile });
+
     this._children = [];
     this.render = this._wrapRender();
     this.remove = this._wrapRemove();

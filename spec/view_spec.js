@@ -156,11 +156,22 @@ describe("Backbone.Component", function() {
 
         view = new CustomView();
       });
+
       it("should render the template using underscore", function() {
         var data = { foo: 'bar' };
         view.renderTemplate(data);
 
         expect(view.$('span.bar').length).toBe(1);
+      });
+
+      it("should only compile the template once", function() {
+        spyOn(_, 'template').andCallThrough();
+
+        var data = { foo: 'bar' };
+        view.renderTemplate(data);
+
+
+        expect(_.template.callCount).toBe(1);
       });
     });
   });
