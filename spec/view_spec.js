@@ -147,7 +147,7 @@ describe("Backbone.Component", function() {
       expect(div.children().length).toBe(0);
     });
 
-    it("should remove itself from it's parent", function() {
+    it("should remove itself from its parent", function() {
       view.add(child1);
       child1.remove();
 
