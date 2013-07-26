@@ -24,19 +24,6 @@ To run tests in *continuous integration* mode:
 make
 ```
 
-## API
-
-### append(child, [selector])
-#### alias: add
-
-Adds a child view to the view's element.
-Optionally define the selector to attach to, which defaults to `$el`. 
-
-### prepend(child, [selector])
-
-Adds a child to the beginning of the view's element.
-Optionally define the selector to attach to, which defaults to `$el`. 
-
 ## Usage
 
 ```js
@@ -57,3 +44,31 @@ Will render:
 ```
 
 See *examples* directory for more.
+
+## API
+
+### append(child, [selector])
+#### alias: add
+
+Adds a child view to the view's element.
+Optionally define the selector to attach to, which defaults to `$el`. 
+
+### prepend(child, [selector])
+
+Adds a child to the beginning of the view's element.
+Optionally define the selector to attach to, which defaults to `$el`. 
+
+### renderTemplate([data])
+
+Renders the view's template with supplied data.
+Defaults to using underscore templates, but can be overriden by replacing the
+`renderer` prototype property with any object that responds to `compile` and
+returns a function which renders the template with the supplied data, e.g:
+
+```js
+Backbone.Component.prototype.renderer = {
+  compile: function(template) {
+    return _.partial(Mustache.render, template);
+  }
+};
+```
