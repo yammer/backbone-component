@@ -62,9 +62,9 @@
   "node"          : true,
 
   "globals"       : {
-    "$"        : true,
-    "_"        : true,
-    "Backbone" : true
+    "$"           : true,
+    "_"           : true,
+    "Backbone"    : true
   }
 
 }

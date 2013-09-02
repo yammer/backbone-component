@@ -1,9 +1,17 @@
 {
-  "name":        "view",
+  "name":        "backbone-component",
   "description": "A thin layer on top of Backbone's view class to add nested child views",
   "version":     "0.0.0",
-
   "license":     "MIT",
+
+  "author": "Yammer Inc. (http://www.yammer.com/)",
+
+  "repository": {
+    "type": "git",
+    "url":  "git@github.int.yammer.com:yammer/backbone-component.git"
+  },
+
+  "main": "backbone-component.js",
 
  "devDependencies": {
     "docco":  "*",
