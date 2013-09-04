@@ -1,6 +1,7 @@
-# Backbone Component
+# Backbone Component [![Build Status](https://travis-ci.org/yammer/backbone-component.png)](https://travis-ci.org/yammer/backbone-component)
 
 A thin layer on top of Backbone's view class to add nested child views.
+
 
 ## Install
 
@@ -24,6 +25,7 @@ To run tests in *continuous integration* mode:
 make
 ```
 
+
 ## Usage
 
 ```js
@@ -44,6 +46,7 @@ Will render:
 ```
 
 See *examples* directory for more.
+
 
 ## API
 
