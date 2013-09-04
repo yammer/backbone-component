@@ -34,6 +34,10 @@ lint:
 
 test:
 	$(info Running tests...)
+	@$(TESTEM) ci -l PhantomJS
+
+testall:
+	$(info Running tests...)
 	@$(TESTEM) ci
 
 testem:
@@ -55,4 +59,4 @@ clean:
 	$(info Cleaning project...)
 	@rm -rf $(COV_FILE)
 
-.PHONY: install lint test testem doc pages clean
+.PHONY: install lint test testall testem doc pages clean
