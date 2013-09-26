@@ -208,8 +208,8 @@ shared.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>Add a child view to an internal array, keeping a reference to
-the element and attach method it should use.</p>
+              <p>Add a child view to an internal array, keeping a reference to the element
+and attach method it should use.</p>
 
             </div>
             
@@ -227,15 +227,14 @@ the element and attach method it should use.</p>
               </div>
               <p>Assign a method to the child so it can remove itself from <code>_children</code>
 array when it&#39;s removed.
-Written as an anonymous function to prevent it being
-bound multiple times in grandparent-parent-child situations</p>
+Written as an anonymous function to prevent it being bound multiple times
+in grandparent-parent-child situations.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="keyword">var</span> removeFromParent = <span class="keyword">function</span>(child) {
       <span class="keyword">this</span>._children = _.without(<span class="keyword">this</span>._children, child);
     };
-
     view._removeFromParent = _.bind(removeFromParent, <span class="keyword">this</span>, child);
 
     <span class="keyword">this</span>._children.push(child);
@@ -267,13 +266,14 @@ bound multiple times in grandparent-parent-child situations</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>Replaced by a function scoped to the parent if the component is added
-as a child (in <code>_addChild</code>) but otherwise does nothing (as the component
-wouldn&#39;t have a parent)</p>
+              <p>Replaced by a function scoped to the parent if the component is added as a
+child (in <code>_addChild</code>) but otherwise does nothing (as the component
+wouldn&#39;t have a parent).</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _removeFromParent: <span class="keyword">function</span>() {},</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  _removeFromParent: <span class="keyword">function</span>() {
+  },</pre></div></div>
             
         </li>
         

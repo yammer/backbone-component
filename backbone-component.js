@@ -59,19 +59,18 @@ Backbone.Component = Backbone.View.extend({
     this.remove = this._wrapRemove();
   },
 
-  // Add a child view to an internal array, keeping a reference to
-  // the element and attach method it should use.
+  // Add a child view to an internal array, keeping a reference to the element
+  // and attach method it should use.
   _addChild: function(view, selector, method) {
     var child = { view: view, selector: selector, method: method || 'append' };
 
     // Assign a method to the child so it can remove itself from `_children`
     // array when it's removed.
-    // Written as an anonymous function to prevent it being
-    // bound multiple times in grandparent-parent-child situations
+    // Written as an anonymous function to prevent it being bound multiple times
+    // in grandparent-parent-child situations.
     var removeFromParent = function(child) {
       this._children = _.without(this._children, child);
     };
-
     view._removeFromParent = _.bind(removeFromParent, this, child);
 
     this._children.push(child);
@@ -82,10 +81,11 @@ Backbone.Component = Backbone.View.extend({
     _.invoke(_.pluck(this._children, 'view'), 'remove');
   },
 
-  // Replaced by a function scoped to the parent if the component is added
-  // as a child (in `_addChild`) but otherwise does nothing (as the component
-  // wouldn't have a parent)
-  _removeFromParent: function() {},
+  // Replaced by a function scoped to the parent if the component is added as a
+  // child (in `_addChild`) but otherwise does nothing (as the component
+  // wouldn't have a parent).
+  _removeFromParent: function() {
+  },
 
   // Wrap `render` to automatically attach all children.
   _wrapRender: function() {
