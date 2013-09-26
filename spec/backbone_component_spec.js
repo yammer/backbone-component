@@ -218,4 +218,28 @@ describe("Backbone.Component", function() {
       expect(view.$el.find('#child1').length).toBe(0);
     });
   });
+
+  describe("removing with children and grandchildren", function () {
+
+    it("removing a child should not cause the grandparent to lose the parent as a child", function () {
+      var grandparent = new Backbone.Component({ id: 'grandparent' });
+      var parent = new Backbone.Component({ id: 'parent' });
+      var child = new Backbone.Component({ id: 'child' });
+
+      spyOn(parent, 'render');
+
+      grandparent.add(parent);
+      parent.add(child);
+
+      child.remove();
+
+      // The grandparent should still be aware of the parent (and so
+      // call its `render` method)
+      grandparent.render();
+
+      expect(parent.render).toHaveBeenCalled();
+    });
+
+  });
+
 });
