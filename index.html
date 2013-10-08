@@ -290,9 +290,12 @@ wouldn&#39;t have a parent).</p>
             
             <div class="content"><div class='highlight'><pre>  _wrapRender: <span class="keyword">function</span>() {
     <span class="keyword">var</span> wrapper = <span class="keyword">function</span>(render) {
-      render.apply(<span class="keyword">this</span>, _.rest(arguments));
+      <span class="keyword">var</span> args = _.rest(arguments);
+
+      render.apply(<span class="keyword">this</span>, args);
       <span class="keyword">this</span>._attachChildren();
-      <span class="keyword">return</span> <span class="keyword">this</span>;
+
+      <span class="keyword">return</span> Backbone.Component.prototype.render.apply(<span class="keyword">this</span>, args);
     };
 
     <span class="keyword">var</span> originalRender = _.bind(<span class="keyword">this</span>.render, <span class="keyword">this</span>);
@@ -315,10 +318,13 @@ parent.</p>
             
             <div class="content"><div class='highlight'><pre>  _wrapRemove: <span class="keyword">function</span>() {
     <span class="keyword">var</span> wrapper = <span class="keyword">function</span>(remove) {
+      <span class="keyword">var</span> args = _.rest(arguments);
+
       <span class="keyword">this</span>._removeFromParent();
       <span class="keyword">this</span>._removeChildren();
-      remove.apply(<span class="keyword">this</span>, _.rest(arguments));
-      <span class="keyword">return</span> <span class="keyword">this</span>;
+      remove.apply(<span class="keyword">this</span>, args);
+
+      <span class="keyword">return</span> Backbone.Component.prototype.remove.apply(<span class="keyword">this</span>, args);
     };
 
     <span class="keyword">var</span> originalRemove = _.bind(<span class="keyword">this</span>.remove, <span class="keyword">this</span>);
