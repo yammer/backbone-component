@@ -90,9 +90,12 @@ Backbone.Component = Backbone.View.extend({
   // Wrap `render` to automatically attach all children.
   _wrapRender: function() {
     var wrapper = function(render) {
-      render.apply(this, _.rest(arguments));
+      var args = _.rest(arguments);
+
+      render.apply(this, args);
       this._attachChildren();
-      return this;
+
+      return Backbone.Component.prototype.render.apply(this, args);
     };
 
     var originalRender = _.bind(this.render, this);
@@ -103,10 +106,13 @@ Backbone.Component = Backbone.View.extend({
   // parent.
   _wrapRemove: function() {
     var wrapper = function(remove) {
+      var args = _.rest(arguments);
+
       this._removeFromParent();
       this._removeChildren();
-      remove.apply(this, _.rest(arguments));
-      return this;
+      remove.apply(this, args);
+
+      return Backbone.Component.prototype.remove.apply(this, args);
     };
 
     var originalRemove = _.bind(this.remove, this);
