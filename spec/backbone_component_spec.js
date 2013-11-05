@@ -98,6 +98,39 @@ describe('Backbone.Component', function() {
     });
   });
 
+  describe('empty', function() {
+    var view, child1, child2;
+
+    beforeEach(function() {
+      var CustomView = Backbone.Component.extend({
+        render: function() {}
+      });
+
+      view = new CustomView();
+      child1 = new Backbone.Component({ id: 'child1' });
+      child2 = new Backbone.Component({ id: 'child2' });
+    });
+
+    it('should be chainable', function() {
+      expect(view.empty()).toBe(view);
+    });
+
+    it('should remove all children', function() {
+      view.$el.append('<div id="foo"></div>');
+      view.add(child1);
+      view.add(child2);
+      view.render();
+
+      expect(view.$el.find('#child1').length).toBe(1);
+      expect(view.$el.find('#child2').length).toBe(1);
+
+      view.empty();
+
+      expect(view.$el.find('#child1').length).toBe(0);
+      expect(view.$el.find('#child2').length).toBe(0);
+    });
+  });
+
   describe('render', function() {
     var view, child;
 

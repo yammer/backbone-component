@@ -53,13 +53,17 @@ See *examples* directory for more.
 ### append(child, [selector])
 #### alias: add
 
-Adds a child view to the view's element.
+Adds a child view to the end of the view's element.
 Optionally define the selector to attach to, which defaults to `$el`. 
 
 ### prepend(child, [selector])
 
-Adds a child to the beginning of the view's element.
+Adds a child view to the beginning of the view's element.
 Optionally define the selector to attach to, which defaults to `$el`. 
+
+### empty()
+
+Removes all child views.
 
 ### renderTemplate([data])
 
