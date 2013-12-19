@@ -116,7 +116,6 @@ describe('Backbone.Component', function() {
     });
 
     it('should remove all children', function() {
-      view.$el.append('<div id="foo"></div>');
       view.add(child1);
       view.add(child2);
       view.render();
@@ -129,6 +128,27 @@ describe('Backbone.Component', function() {
       expect(view.$el.find('#child1').length).toBe(0);
       expect(view.$el.find('#child2').length).toBe(0);
     });
+
+    it('should not hold onto child references', function() {
+      view.add(child1);
+      view.add(child2);
+      view.render();
+
+      expect(view.$el.find('#child1').length).toBe(1);
+      expect(view.$el.find('#child2').length).toBe(1);
+
+      spyOn(child1, 'render');
+      spyOn(child2, 'render');
+
+      // empty then re-render
+      view.empty();
+      view.render();
+
+      expect(child1.render).not.toHaveBeenCalled();
+      expect(child2.render).not.toHaveBeenCalled();
+
+    });
+
   });
 
   describe('render', function() {
@@ -275,6 +295,7 @@ describe('Backbone.Component', function() {
       var child = new Backbone.Component({ id: 'child' });
 
       spyOn(parent, 'render');
+      spyOn(child, 'render');
 
       grandparent.add(parent);
       parent.add(child);
@@ -286,6 +307,7 @@ describe('Backbone.Component', function() {
       grandparent.render();
 
       expect(parent.render).toHaveBeenCalled();
+      expect(child.render).not.toHaveBeenCalled();
     });
 
   });
