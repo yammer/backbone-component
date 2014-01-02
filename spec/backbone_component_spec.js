@@ -129,6 +129,42 @@ describe('Backbone.Component', function() {
       expect(view.$el.find('#child1').length).toBe(0);
       expect(view.$el.find('#child2').length).toBe(0);
     });
+
+    describe('with non-Backbone.Component children', function() {
+      var child3;
+      beforeEach(function() {
+        var ComponentWithNoRemove = function(options) {
+          this.options = options;
+        };
+        _.extend(ComponentWithNoRemove.prototype, {
+          delegateEvents: function() {},
+          render: function() {
+            this.$el = $('<div />');
+            this.$el.attr('id', this.options.id);
+          },
+          remove: function() {
+            this.$el.remove();
+          }
+        });
+
+        child3 = new ComponentWithNoRemove({ id: 'child3' });
+      });
+
+      it('should remove all children', function() {
+        view.$el.append('<div id="foo"></div>');
+        view.add(child3);
+        view.render();
+
+        expect(view.$el.find('#child3').length).toBe(1);
+        expect(view._children.length).toBe(1);
+
+        view.empty();
+
+        expect(view.$el.find('#child3').length).toBe(0);
+
+        expect(view._children.length).toBe(0);
+      });
+    });
   });
 
   describe('render', function() {

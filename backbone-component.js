@@ -85,6 +85,7 @@ Backbone.Component = Backbone.View.extend({
   // Call `remove` for each child added to the view.
   _removeChildren: function() {
     _.invoke(_.pluck(this._children, 'view'), 'remove');
+    this._children = [];
   },
 
   // Replaced by a function scoped to the parent if the component is added as a
