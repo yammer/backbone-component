@@ -18,10 +18,10 @@
         <li id="section-1">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h1>Backbone.Component</h1>
+              <h1 id="backbone-component">Backbone.Component</h1>
 
             </div>
             
@@ -53,7 +53,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  constructor: <span class="keyword">function</span>() {
+            <div class="content"><div class='highlight'><pre>  constructor: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
     <span class="keyword">this</span>._setup();
     Backbone.View.apply(<span class="keyword">this</span>, arguments);
   },</pre></div></div>
@@ -64,10 +64,10 @@
         <li id="section-4">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h2>Public API</h2>
+              <h2 id="public-api">Public API</h2>
 
             </div>
             
@@ -86,7 +86,7 @@ Aliased to <code>add</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  append: <span class="keyword">function</span>(view, selector) {
+            <div class="content"><div class='highlight'><pre>  append: <span class="function"><span class="keyword">function</span><span class="params">(view, selector)</span> {</span>
     <span class="keyword">this</span>._addChild(view, selector, <span class="string">'append'</span>);
     <span class="keyword">return</span> <span class="keyword">this</span>;
   },</pre></div></div>
@@ -105,7 +105,7 @@ Optionally specify a selector within the view to attach to.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  prepend: <span class="keyword">function</span>(view, selector) {
+            <div class="content"><div class='highlight'><pre>  prepend: <span class="function"><span class="keyword">function</span><span class="params">(view, selector)</span> {</span>
     <span class="keyword">this</span>._addChild(view, selector, <span class="string">'prepend'</span>);
     <span class="keyword">return</span> <span class="keyword">this</span>;
   },</pre></div></div>
@@ -123,7 +123,7 @@ Optionally specify a selector within the view to attach to.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  empty: <span class="keyword">function</span>() {
+            <div class="content"><div class='highlight'><pre>  empty: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
     <span class="keyword">this</span>._removeChildren();
     <span class="keyword">return</span> <span class="keyword">this</span>;
   },</pre></div></div>
@@ -141,7 +141,7 @@ Optionally specify a selector within the view to attach to.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  renderTemplate: <span class="keyword">function</span>(data) {
+            <div class="content"><div class='highlight'><pre>  renderTemplate: <span class="function"><span class="keyword">function</span><span class="params">(data)</span> {</span>
     <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>._compile(<span class="keyword">this</span>.template)(data));
     <span class="keyword">return</span> <span class="keyword">this</span>;
   },</pre></div></div>
@@ -161,7 +161,7 @@ Optionally specify a selector within the view to attach to.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  renderer: {
-    compile: <span class="keyword">function</span>(template) {
+    compile: <span class="function"><span class="keyword">function</span><span class="params">(template)</span> {</span>
       <span class="keyword">this</span>._template = <span class="keyword">this</span>._template || _.partial(_.template, template);
       <span class="keyword">return</span> <span class="keyword">this</span>._template;
     }
@@ -173,10 +173,10 @@ Optionally specify a selector within the view to attach to.</p>
         <li id="section-10">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <h2>Private methods</h2>
+              <h2 id="private-methods">Private methods</h2>
 
             </div>
             
@@ -194,7 +194,7 @@ methods.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _setup: <span class="keyword">function</span>() {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  _setup: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span></pre></div></div>
             
         </li>
         
@@ -231,7 +231,7 @@ and attach method it should use.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _addChild: <span class="keyword">function</span>(view, selector, method) {
+            <div class="content"><div class='highlight'><pre>  _addChild: <span class="function"><span class="keyword">function</span><span class="params">(view, selector, method)</span> {</span>
     <span class="keyword">var</span> child = { view: view, selector: selector, method: method || <span class="string">'append'</span> };</pre></div></div>
             
         </li>
@@ -250,7 +250,7 @@ in grandparent-parent-child situations.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="keyword">var</span> removeFromParent = <span class="keyword">function</span>(child) {
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">var</span> removeFromParent = <span class="function"><span class="keyword">function</span><span class="params">(child)</span> {</span>
       <span class="keyword">this</span>._children = _.without(<span class="keyword">this</span>._children, child);
     };
     view._removeFromParent = _.bind(removeFromParent, <span class="keyword">this</span>, child);
@@ -271,8 +271,9 @@ in grandparent-parent-child situations.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _removeChildren: <span class="keyword">function</span>() {
+            <div class="content"><div class='highlight'><pre>  _removeChildren: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
     _.invoke(_.pluck(<span class="keyword">this</span>._children, <span class="string">'view'</span>), <span class="string">'remove'</span>);
+    <span class="keyword">this</span>._children = [];
   },</pre></div></div>
             
         </li>
@@ -290,7 +291,7 @@ wouldn&#39;t have a parent).</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _removeFromParent: <span class="keyword">function</span>() {
+            <div class="content"><div class='highlight'><pre>  _removeFromParent: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
   },</pre></div></div>
             
         </li>
@@ -306,8 +307,8 @@ wouldn&#39;t have a parent).</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _wrapRender: <span class="keyword">function</span>() {
-    <span class="keyword">var</span> wrapper = <span class="keyword">function</span>(render) {
+            <div class="content"><div class='highlight'><pre>  _wrapRender: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> wrapper = <span class="function"><span class="keyword">function</span><span class="params">(render)</span> {</span>
       <span class="keyword">var</span> args = _.rest(arguments);
 
       render.apply(<span class="keyword">this</span>, args);
@@ -334,8 +335,8 @@ parent.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _wrapRemove: <span class="keyword">function</span>() {
-    <span class="keyword">var</span> wrapper = <span class="keyword">function</span>(remove) {
+            <div class="content"><div class='highlight'><pre>  _wrapRemove: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> wrapper = <span class="function"><span class="keyword">function</span><span class="params">(remove)</span> {</span>
       <span class="keyword">var</span> args = _.rest(arguments);
 
       <span class="keyword">this</span>._removeFromParent();
@@ -363,7 +364,7 @@ Defaults to <code>this.$el</code> and <code>append</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _attachChild: <span class="keyword">function</span>(child) {
+            <div class="content"><div class='highlight'><pre>  _attachChild: <span class="function"><span class="keyword">function</span><span class="params">(child)</span> {</span>
     <span class="keyword">var</span> target = child.selector ? <span class="keyword">this</span>.$(child.selector) : <span class="keyword">this</span>.$el;
     child.view.render();
     target[child.method](child.view.$el);
@@ -383,8 +384,8 @@ child view so handlers are correctly bound after being attached.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _attachChildren: <span class="keyword">function</span>() {
-    _.each(<span class="keyword">this</span>._children, <span class="keyword">function</span>(child) {
+            <div class="content"><div class='highlight'><pre>  _attachChildren: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    _.each(<span class="keyword">this</span>._children, <span class="function"><span class="keyword">function</span><span class="params">(child)</span> {</span>
       <span class="keyword">this</span>._attachChild(child);
       child.view.delegateEvents();
     }, <span class="keyword">this</span>);
