@@ -98,6 +98,27 @@ describe('Backbone.Component', function() {
     });
   });
 
+  describe('children', function() {
+    var view, child1, child2;
+
+    beforeEach(function() {
+      var CustomView = Backbone.Component.extend({
+        render: function() {}
+      });
+
+      view = new CustomView();
+      child1 = new Backbone.Component({ id: 'child1' });
+      child2 = new Backbone.Component({ id: 'child2' });
+    });
+
+    it('should return the list of children', function() {
+      view.add(child1);
+      view.add(child2);
+
+      expect(view.children()).toEqual([child1, child2]);
+    });
+  });
+
   describe('empty', function() {
     var view, child1, child2;
 

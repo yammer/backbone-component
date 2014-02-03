@@ -29,6 +29,11 @@ Backbone.Component = Backbone.View.extend({
     return this;
   },
 
+  // Retrieve the list of child views.
+  children: function() {
+    return _.pluck(this._children, 'view');
+  },
+
   // Remove all child views added to this one.
   empty: function() {
     this._removeChildren();
@@ -84,7 +89,7 @@ Backbone.Component = Backbone.View.extend({
 
   // Call `remove` for each child added to the view.
   _removeChildren: function() {
-    _.invoke(_.pluck(this._children, 'view'), 'remove');
+    _.invoke(this.children(), 'remove');
     this._children = [];
   },
 
