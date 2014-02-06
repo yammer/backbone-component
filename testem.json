@@ -48,5 +48,17 @@
       "command":  "make SL_BROWSER='chrome' SL_VERSION='31' SL_PLATFORM='Windows 8.1' saucie",
       "protocol": "tap"
     }
-  }
+  },
+  "launch_in_ci": [
+    "IE6 XP",
+    "IE7 XP",
+    "IE8 XP",
+    "IE8 W7",
+    "IE9 W7",
+    "IE10 W7",
+    "IE10 W8",
+    "IE11 W8.1",
+    "Firefox W8.1",
+    "Chrome W8.1"
+  ]
 }
