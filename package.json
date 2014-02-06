@@ -8,7 +8,7 @@
 
   "repository": {
     "type": "git",
-    "url":  "git@github.int.yammer.com:yammer/backbone-component.git"
+    "url":  "git://github.com/yammer/backbone-component.git"
   },
 
   "main": "backbone-component.js",
