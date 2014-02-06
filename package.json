@@ -21,6 +21,6 @@
   },
 
   "scripts": {
-    "test": "make"
+    "test": "make lint testall"
   }
 }
