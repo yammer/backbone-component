@@ -14,9 +14,10 @@
   "main": "backbone-component.js",
 
  "devDependencies": {
-    "docco":  "*",
-    "jshint": "*",
-    "testem": "*"
+    "docco":  "~0.6.3",
+    "jshint": "~2.4.3",
+    "testem": "~0.6.7",
+    "saucie": "~0.1.0"
   },
 
   "scripts": {

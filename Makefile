@@ -16,6 +16,7 @@ GIT    := $(shell which git)
 NPM    := $(shell which npm)
 DOCCO  := $(NPMBIN_DIR)/docco
 JSHINT := $(NPMBIN_DIR)/jshint
+SAUCIE := $(NPMBIN_DIR)/saucie
 TESTEM := $(NPMBIN_DIR)/testem
 
 # Rules
@@ -43,6 +44,10 @@ testall:
 testem:
 	$(info Running testem...)
 	@$(TESTEM)
+
+saucie:
+	$(info Running saucie...)
+	@$(SAUCIE) --browserNameSL='$(SL_BROWSER)' --versionSL='$(SL_VERSION)' --platformSL='$(SL_PLATFORM)'
 
 doc:
 	$(info Generating documentation...)
