@@ -104,6 +104,9 @@ Backbone.Component = Backbone.View.extend({
     var wrapper = function(render) {
       var args = _.rest(arguments);
 
+      if (this._isIE) {
+        this._detachChildren();
+      }
       render.apply(this, args);
       this._attachChildren();
 
@@ -153,8 +156,27 @@ Backbone.Component = Backbone.View.extend({
       }
       child.rendered = true;
     }, this);
-  }
+  },
+
+  _detachChildren: function() {
+    _.each(this._children, function(child) {
+      if (child.view.el) {
+        child.view.$el.detach();
+      }
+    }, this);
+  },
+
+  _isIE: (function() {
+    // old MSIE < IE 11
+    if (document.all) {
+      return true;
+    }
+    // MSIE 11
+    return (!(window.ActiveXObject) && "ActiveXObject" in window);
+  })()
+
 });
 
 // Alias `add` to `append`.
 Backbone.Component.prototype.add = Backbone.Component.prototype.append;
+
