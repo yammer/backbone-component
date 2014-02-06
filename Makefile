@@ -35,11 +35,11 @@ lint:
 
 test:
 	$(info Running tests...)
-	@$(TESTEM) ci -l PhantomJS
+	@$(TESTEM) ci --launch PhantomJS
 
 testall:
 	$(info Running tests...)
-	@$(TESTEM) ci
+	@$(TESTEM) ci --port 8080
 
 testem:
 	$(info Running testem...)
