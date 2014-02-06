@@ -3,6 +3,15 @@
 //
 // A thin layer on top of Backbone's view class to add nested child views.
 
+var isIE = (function() {
+  // MSIE < 11
+  if (document.all) {
+    return true;
+  }
+  // MSIE 11
+  return (!(window.ActiveXObject) && 'ActiveXObject' in window);
+})();
+
 Backbone.Component = Backbone.View.extend({
 
   // Override constructor so Components can use `initialize` normally.
@@ -104,6 +113,9 @@ Backbone.Component = Backbone.View.extend({
     var wrapper = function(render) {
       var args = _.rest(arguments);
 
+      if (isIE) {
+        this._detachChildren();
+      }
       render.apply(this, args);
       this._attachChildren();
 
@@ -131,22 +143,40 @@ Backbone.Component = Backbone.View.extend({
     return _.wrap(originalRemove, wrapper);
   },
 
-  // Attach child to the correct element and with the correct method.
-  // Defaults to `this.$el` and `append`.
+  // Attach child to the correct element and with the correct method. Defaults
+  // to `this.$el` and `append`.
+  // Only call `render` on the child the first time.
   _attachChild: function(child) {
     var target = child.selector ? this.$(child.selector) : this.$el;
-    child.view.render();
+    if (!child.rendered) {
+      child.view.render();
+    }
     target[child.method](child.view.$el);
   },
 
   // Attach all children in the right order, and call `delegateEvents` for each
   // child view so handlers are correctly bound after being attached.
+  // Only call `delegateEvents` on the child the first time.
   _attachChildren: function() {
     _.each(this._children, function(child) {
       this._attachChild(child);
-      child.view.delegateEvents();
+      if (!child.rendered) {
+        child.view.delegateEvents();
+      }
+      child.rendered = true;
     }, this);
+  },
+
+  // Detach children to avoid this bug in IE:
+  // http://bugs.jquery.com/ticket/11473
+  _detachChildren: function() {
+    _.each(this._children, function(child) {
+      if (child.view.$el) {
+        child.view.$el.detach();
+      }
+    });
   }
+
 });
 
 // Alias `add` to `append`.
