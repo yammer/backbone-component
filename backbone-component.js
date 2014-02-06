@@ -172,7 +172,7 @@ Backbone.Component = Backbone.View.extend({
       return true;
     }
     // MSIE 11
-    return (!(window.ActiveXObject) && "ActiveXObject" in window);
+    return (!(window.ActiveXObject) && 'ActiveXObject' in window);
   })()
 
 });
