@@ -281,8 +281,16 @@ describe('Backbone.Component', function() {
         var CustomChildView = Backbone.Component.extend({
           template: '<p class="child"></p>',
 
+          events: {
+            'click': 'onClick'
+          },
+
           render: function () {
             return this.renderTemplate();
+          },
+
+          onClick: function () {
+            this.$el.addClass('clicked');
           }
         });
 
@@ -296,6 +304,13 @@ describe('Backbone.Component', function() {
         view.render();
         model.set({ foo: 'bar' });
         expect(view.$('p.child').length).toBe(2);
+      });
+
+      it('should handle children events correctly', function() {
+        view.render();
+        model.set({ foo: 'bar' });
+        view.$('p.child').click();
+        expect(view.$('.clicked p.child').length).toBe(2);
       });
     });
   });

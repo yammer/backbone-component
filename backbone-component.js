@@ -150,20 +150,17 @@ Backbone.Component = Backbone.View.extend({
     var target = child.selector ? this.$(child.selector) : this.$el;
     if (!child.rendered) {
       child.view.render();
+      child.rendered = true;
     }
     target[child.method](child.view.$el);
   },
 
   // Attach all children in the right order, and call `delegateEvents` for each
   // child view so handlers are correctly bound after being attached.
-  // Only call `delegateEvents` on the child the first time.
   _attachChildren: function() {
     _.each(this._children, function(child) {
       this._attachChild(child);
-      if (!child.rendered) {
-        child.view.delegateEvents();
-      }
-      child.rendered = true;
+      child.view.delegateEvents();
     }, this);
   },
 
