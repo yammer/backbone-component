@@ -261,6 +261,43 @@ describe('Backbone.Component', function() {
         expect(template).toHaveBeenCalledWith(data);
       });
     });
+
+    describe('with child views', function() {
+      var model;
+
+      beforeEach(function() {
+        var CustomParentView = Backbone.Component.extend({
+          template: '<p class="parent"></p>',
+
+          initialize: function () {
+            this.listenTo(this.model, 'change', this.render);
+          },
+
+          render: function () {
+            return this.renderTemplate();
+          }
+        });
+
+        var CustomChildView = Backbone.Component.extend({
+          template: '<p class="child"></p>',
+
+          render: function () {
+            return this.renderTemplate();
+          }
+        });
+
+        model = new Backbone.Model();
+        view  = new CustomParentView({ model: model });
+        view.append(new CustomChildView());
+        view.append(new CustomChildView());
+      });
+
+      it('should re-render the children correctly', function() {
+        view.render();
+        model.set({ foo: 'bar' });
+        expect(view.$('p.child').length).toBe(2);
+      });
+    });
   });
 
   describe('remove', function() {
