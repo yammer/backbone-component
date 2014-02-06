@@ -8,57 +8,57 @@
     "spec/**/*.js"
   ],
   "launchers": {
-    "IE6 XP": {
+    "IE6-XP": {
       "command":  "make SL_BROWSER='internet explorer' SL_VERSION='6' SL_PLATFORM='Windows XP' saucie",
       "protocol": "tap"
     },
-    "IE7 XP": {
+    "IE7-XP": {
       "command":  "make SL_BROWSER='internet explorer' SL_VERSION='7' SL_PLATFORM='Windows XP' saucie",
       "protocol": "tap"
     },
-    "IE8 XP": {
+    "IE8-XP": {
       "command":  "make SL_BROWSER='internet explorer' SL_VERSION='8' SL_PLATFORM='Windows XP' saucie",
       "protocol": "tap"
     },
-    "IE8 W7": {
+    "IE8-W7": {
       "command":  "make SL_BROWSER='internet explorer' SL_VERSION='8' SL_PLATFORM='Windows 7' saucie",
       "protocol": "tap"
     },
-    "IE9 W7": {
+    "IE9-W7": {
       "command":  "make SL_BROWSER='internet explorer' SL_VERSION='9' SL_PLATFORM='Windows 7' saucie",
       "protocol": "tap"
     },
-    "IE10 W7": {
+    "IE10-W7": {
       "command":  "make SL_BROWSER='internet explorer' SL_VERSION='10' SL_PLATFORM='Windows 7' saucie",
       "protocol": "tap"
     },
-    "IE10 W8": {
+    "IE10-W8": {
       "command":  "make SL_BROWSER='internet explorer' SL_VERSION='10' SL_PLATFORM='Windows 8' saucie",
       "protocol": "tap"
     },
-    "IE11 W8.1": {
+    "IE11-W8.1": {
       "command":  "make SL_BROWSER='internet explorer' SL_VERSION='11' SL_PLATFORM='Windows 8.1' saucie",
       "protocol": "tap"
     },
-    "Firefox W8.1": {
+    "FF-W8.1": {
       "command":  "make SL_BROWSER='firefox' SL_VERSION='26' SL_PLATFORM='Windows 8.1' saucie",
       "protocol": "tap"
     },
-    "Chrome W8.1": {
+    "CH-W8.1": {
       "command":  "make SL_BROWSER='chrome' SL_VERSION='31' SL_PLATFORM='Windows 8.1' saucie",
       "protocol": "tap"
     }
   },
   "launch_in_ci": [
-    "IE6 XP",
-    "IE7 XP",
-    "IE8 XP",
-    "IE8 W7",
-    "IE9 W7",
-    "IE10 W7",
-    "IE10 W8",
-    "IE11 W8.1",
-    "Firefox W8.1",
-    "Chrome W8.1"
+    "IE6-XP",
+    "IE7-XP",
+    "IE8-XP",
+    "IE8-W7",
+    "IE9-W7",
+    "IE10-W7",
+    "IE10-W8",
+    "IE11-W8.1",
+    "FF-W8.1",
+    "CH-W8.1"
   ]
 }
