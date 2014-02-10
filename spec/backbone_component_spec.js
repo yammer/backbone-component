@@ -18,7 +18,12 @@ describe('Backbone.Component', function() {
       expect(view.options.foo).toBe('bar');
     });
 
-    it('should respect options passed to the constructor', function() {
+    it('should ignore undefined options passed to the constructor', function() {
+      view = new CustomView({ foo: undefined });
+      expect(view.options.foo).toBe('bar');
+    });
+
+    it('should respect defined options passed to the constructor', function() {
       view = new CustomView({ foo: 'baz' });
       expect(view.options.foo).toBe('baz');
     });
