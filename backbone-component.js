@@ -15,9 +15,20 @@ var isIE = (function() {
 Backbone.Component = Backbone.View.extend({
 
   // Override constructor so Components can use `initialize` normally.
-  constructor: function() {
+  constructor: function(options) {
     this._setup();
-    Backbone.View.apply(this, arguments);
+
+    // Remove undefined options.
+    _.each(options, function(v, k) {
+      if (typeof v === 'undefined') {
+        delete options[k];
+      }
+    });
+    // Extend with defaults.
+    options = _.extend({}, _.result(this, 'defaults'), options);
+
+    Backbone.View.call(this, options);
+
   },
 
   // Public API

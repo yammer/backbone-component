@@ -1,5 +1,29 @@
 describe('Backbone.Component', function() {
 
+  describe('initialize', function() {
+    var CustomView, view;
+
+    beforeEach(function() {
+      CustomView = Backbone.Component.extend({
+        defaults: { foo: 'bar' },
+
+        initialize: function(options) {
+          this.options = options;
+        }
+      });
+    });
+
+    it('should merge defaults into options', function() {
+      view = new CustomView();
+      expect(view.options.foo).toBe('bar');
+    });
+
+    it('should respect options passed to the constructor', function() {
+      view = new CustomView({ foo: 'baz' });
+      expect(view.options.foo).toBe('baz');
+    });
+  });
+
   describe('add', function() {
     var view;
 
@@ -364,7 +388,7 @@ describe('Backbone.Component', function() {
 
   describe('removing with children and grandchildren', function () {
 
-    it('removing a child should not cause the grandparent to lose the parent as a child', function () {
+    it('should not cause the grandparent to lose the parent as a child', function () {
       var grandparent = new Backbone.Component({ id: 'grandparent' });
       var parent = new Backbone.Component({ id: 'parent' });
       var child = new Backbone.Component({ id: 'child' });
