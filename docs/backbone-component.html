@@ -39,7 +39,9 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>
-<span class="hljs-keyword">var</span> isIE = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div></div>
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Backbone)</span> {</span>
+
+  <span class="hljs-keyword">var</span> isIE = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div></div>
             
         </li>
         
@@ -54,9 +56,9 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (document.all) {
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-  }</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (document.all) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }</pre></div></div>
             
         </li>
         
@@ -71,10 +73,10 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">return</span> (!(window.ActiveXObject) &amp;&amp; <span class="hljs-string">'ActiveXObject'</span> <span class="hljs-keyword">in</span> window);
-})();
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">return</span> (!(window.ActiveXObject) &amp;&amp; <span class="hljs-string">'ActiveXObject'</span> <span class="hljs-keyword">in</span> window);
+  })();
 
-Backbone.Component = Backbone.View.extend({</pre></div></div>
+  Backbone.Component = Backbone.View.extend({</pre></div></div>
             
         </li>
         
@@ -89,8 +91,8 @@ Backbone.Component = Backbone.View.extend({</pre></div></div>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  constructor: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(options)</span> {</span>
-    <span class="hljs-keyword">this</span>._setup();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    constructor: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(options)</span> {</span>
+      <span class="hljs-keyword">this</span>._setup();</pre></div></div>
             
         </li>
         
@@ -105,11 +107,11 @@ Backbone.Component = Backbone.View.extend({</pre></div></div>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    _.each(options, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v, k)</span> {</span>
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> v === <span class="hljs-string">'undefined'</span>) {
-        <span class="hljs-keyword">delete</span> options[k];
-      }
-    });</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      _.each(options, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v, k)</span> {</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> v === <span class="hljs-string">'undefined'</span>) {
+          <span class="hljs-keyword">delete</span> options[k];
+        }
+      });</pre></div></div>
             
         </li>
         
@@ -124,11 +126,11 @@ Backbone.Component = Backbone.View.extend({</pre></div></div>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    options = _.extend({}, _.result(<span class="hljs-keyword">this</span>, <span class="hljs-string">'defaults'</span>), options);
+            <div class="content"><div class='highlight'><pre>      options = _.extend({}, _.result(<span class="hljs-keyword">this</span>, <span class="hljs-string">'defaults'</span>), options);
 
-    Backbone.View.call(<span class="hljs-keyword">this</span>, options);
+      Backbone.View.call(<span class="hljs-keyword">this</span>, options);
 
-  },</pre></div></div>
+    },</pre></div></div>
             
         </li>
         
@@ -170,10 +172,10 @@ Aliased to <code>add</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  append: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view, selector)</span> {</span>
-    <span class="hljs-keyword">this</span>._addChild(view, selector, <span class="hljs-string">'append'</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    append: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view, selector)</span> {</span>
+      <span class="hljs-keyword">this</span>._addChild(view, selector, <span class="hljs-string">'append'</span>);
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    },</pre></div></div>
             
         </li>
         
@@ -189,10 +191,10 @@ Optionally specify a selector within the view to attach to.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  prepend: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view, selector)</span> {</span>
-    <span class="hljs-keyword">this</span>._addChild(view, selector, <span class="hljs-string">'prepend'</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    prepend: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view, selector)</span> {</span>
+      <span class="hljs-keyword">this</span>._addChild(view, selector, <span class="hljs-string">'prepend'</span>);
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    },</pre></div></div>
             
         </li>
         
@@ -207,9 +209,9 @@ Optionally specify a selector within the view to attach to.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  children: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">return</span> _.pluck(<span class="hljs-keyword">this</span>._children, <span class="hljs-string">'view'</span>);
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    children: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      <span class="hljs-keyword">return</span> _.pluck(<span class="hljs-keyword">this</span>._children, <span class="hljs-string">'view'</span>);
+    },</pre></div></div>
             
         </li>
         
@@ -224,10 +226,10 @@ Optionally specify a selector within the view to attach to.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  empty: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">this</span>._removeChildren();
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    empty: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      <span class="hljs-keyword">this</span>._removeChildren();
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    },</pre></div></div>
             
         </li>
         
@@ -242,10 +244,10 @@ Optionally specify a selector within the view to attach to.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  renderTemplate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
-    <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>._compile(<span class="hljs-keyword">this</span>.template)(data));
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    renderTemplate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+      <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>._compile(<span class="hljs-keyword">this</span>.template)(data));
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    },</pre></div></div>
             
         </li>
         
@@ -261,12 +263,12 @@ Optionally specify a selector within the view to attach to.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  renderer: {
-    compile: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(template)</span> {</span>
-      <span class="hljs-keyword">this</span>._template = <span class="hljs-keyword">this</span>._template || _.partial(_.template, template);
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._template;
-    }
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    renderer: {
+      compile: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(template)</span> {</span>
+        <span class="hljs-keyword">this</span>._template = <span class="hljs-keyword">this</span>._template || _.partial(_.template, template);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._template;
+      }
+    },</pre></div></div>
             
         </li>
         
@@ -307,7 +309,7 @@ methods.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _setup: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    _setup: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div></div>
             
         </li>
         
@@ -323,12 +325,12 @@ shared.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    _.extend(<span class="hljs-keyword">this</span>, { _compile: <span class="hljs-keyword">this</span>.renderer.compile });
+            <div class="content"><div class='highlight'><pre>      _.extend(<span class="hljs-keyword">this</span>, { _compile: <span class="hljs-keyword">this</span>.renderer.compile });
 
-    <span class="hljs-keyword">this</span>._children = [];
-    <span class="hljs-keyword">this</span>.render = <span class="hljs-keyword">this</span>._wrapRender();
-    <span class="hljs-keyword">this</span>.remove = <span class="hljs-keyword">this</span>._wrapRemove();
-  },</pre></div></div>
+      <span class="hljs-keyword">this</span>._children = [];
+      <span class="hljs-keyword">this</span>.render = <span class="hljs-keyword">this</span>._wrapRender();
+      <span class="hljs-keyword">this</span>.remove = <span class="hljs-keyword">this</span>._wrapRemove();
+    },</pre></div></div>
             
         </li>
         
@@ -344,8 +346,8 @@ and attach method it should use.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _addChild: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view, selector, method)</span> {</span>
-    <span class="hljs-keyword">var</span> child = { view: view, selector: selector, method: method || <span class="hljs-string">'append'</span> };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    _addChild: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(view, selector, method)</span> {</span>
+      <span class="hljs-keyword">var</span> child = { view: view, selector: selector, method: method || <span class="hljs-string">'append'</span> };</pre></div></div>
             
         </li>
         
@@ -363,13 +365,13 @@ in grandparent-parent-child situations.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> removeFromParent = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(child)</span> {</span>
-      <span class="hljs-keyword">this</span>._children = _.without(<span class="hljs-keyword">this</span>._children, child);
-    };
-    view._removeFromParent = _.bind(removeFromParent, <span class="hljs-keyword">this</span>, child);
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> removeFromParent = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(child)</span> {</span>
+        <span class="hljs-keyword">this</span>._children = _.without(<span class="hljs-keyword">this</span>._children, child);
+      };
+      view._removeFromParent = _.bind(removeFromParent, <span class="hljs-keyword">this</span>, child);
 
-    <span class="hljs-keyword">this</span>._children.push(child);
-  },</pre></div></div>
+      <span class="hljs-keyword">this</span>._children.push(child);
+    },</pre></div></div>
             
         </li>
         
@@ -384,10 +386,10 @@ in grandparent-parent-child situations.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _removeChildren: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    _.invoke(<span class="hljs-keyword">this</span>.children(), <span class="hljs-string">'remove'</span>);
-    <span class="hljs-keyword">this</span>._children = [];
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    _removeChildren: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      _.invoke(<span class="hljs-keyword">this</span>.children(), <span class="hljs-string">'remove'</span>);
+      <span class="hljs-keyword">this</span>._children = [];
+    },</pre></div></div>
             
         </li>
         
@@ -404,8 +406,8 @@ wouldn’t have a parent).</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _removeFromParent: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    _removeFromParent: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+    },</pre></div></div>
             
         </li>
         
@@ -420,22 +422,22 @@ wouldn’t have a parent).</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _wrapRender: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">var</span> wrapper = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(render)</span> {</span>
-      <span class="hljs-keyword">var</span> args = _.rest(<span class="hljs-built_in">arguments</span>);
+            <div class="content"><div class='highlight'><pre>    _wrapRender: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      <span class="hljs-keyword">var</span> wrapper = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(render)</span> {</span>
+        <span class="hljs-keyword">var</span> args = _.rest(<span class="hljs-built_in">arguments</span>);
 
-      <span class="hljs-keyword">if</span> (isIE) {
-        <span class="hljs-keyword">this</span>._detachChildren();
-      }
-      render.apply(<span class="hljs-keyword">this</span>, args);
-      <span class="hljs-keyword">this</span>._attachChildren();
+        <span class="hljs-keyword">if</span> (isIE) {
+          <span class="hljs-keyword">this</span>._detachChildren();
+        }
+        render.apply(<span class="hljs-keyword">this</span>, args);
+        <span class="hljs-keyword">this</span>._attachChildren();
 
-      <span class="hljs-keyword">return</span> Backbone.Component.prototype.render.apply(<span class="hljs-keyword">this</span>, args);
-    };
+        <span class="hljs-keyword">return</span> Backbone.Component.prototype.render.apply(<span class="hljs-keyword">this</span>, args);
+      };
 
-    <span class="hljs-keyword">var</span> originalRender = _.bind(<span class="hljs-keyword">this</span>.render, <span class="hljs-keyword">this</span>);
-    <span class="hljs-keyword">return</span> _.wrap(originalRender, wrapper);
-  },</pre></div></div>
+      <span class="hljs-keyword">var</span> originalRender = _.bind(<span class="hljs-keyword">this</span>.render, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">return</span> _.wrap(originalRender, wrapper);
+    },</pre></div></div>
             
         </li>
         
@@ -451,20 +453,20 @@ parent.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _wrapRemove: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">var</span> wrapper = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(remove)</span> {</span>
-      <span class="hljs-keyword">var</span> args = _.rest(<span class="hljs-built_in">arguments</span>);
+            <div class="content"><div class='highlight'><pre>    _wrapRemove: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      <span class="hljs-keyword">var</span> wrapper = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(remove)</span> {</span>
+        <span class="hljs-keyword">var</span> args = _.rest(<span class="hljs-built_in">arguments</span>);
 
-      <span class="hljs-keyword">this</span>._removeFromParent();
-      <span class="hljs-keyword">this</span>._removeChildren();
-      remove.apply(<span class="hljs-keyword">this</span>, args);
+        <span class="hljs-keyword">this</span>._removeFromParent();
+        <span class="hljs-keyword">this</span>._removeChildren();
+        remove.apply(<span class="hljs-keyword">this</span>, args);
 
-      <span class="hljs-keyword">return</span> Backbone.Component.prototype.remove.apply(<span class="hljs-keyword">this</span>, args);
-    };
+        <span class="hljs-keyword">return</span> Backbone.Component.prototype.remove.apply(<span class="hljs-keyword">this</span>, args);
+      };
 
-    <span class="hljs-keyword">var</span> originalRemove = _.bind(<span class="hljs-keyword">this</span>.remove, <span class="hljs-keyword">this</span>);
-    <span class="hljs-keyword">return</span> _.wrap(originalRemove, wrapper);
-  },</pre></div></div>
+      <span class="hljs-keyword">var</span> originalRemove = _.bind(<span class="hljs-keyword">this</span>.remove, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">return</span> _.wrap(originalRemove, wrapper);
+    },</pre></div></div>
             
         </li>
         
@@ -481,14 +483,14 @@ Only call <code>render</code> on the child the first time.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _attachChild: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(child)</span> {</span>
-    <span class="hljs-keyword">var</span> target = child.selector ? <span class="hljs-keyword">this</span>.$(child.selector) : <span class="hljs-keyword">this</span>.$el;
-    <span class="hljs-keyword">if</span> (!child.rendered) {
-      child.view.render();
-      child.rendered = <span class="hljs-literal">true</span>;
-    }
-    target[child.method](child.view.$el);
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    _attachChild: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(child)</span> {</span>
+      <span class="hljs-keyword">var</span> target = child.selector ? <span class="hljs-keyword">this</span>.$(child.selector) : <span class="hljs-keyword">this</span>.$el;
+      <span class="hljs-keyword">if</span> (!child.rendered) {
+        child.view.render();
+        child.rendered = <span class="hljs-literal">true</span>;
+      }
+      target[child.method](child.view.$el);
+    },</pre></div></div>
             
         </li>
         
@@ -504,12 +506,12 @@ child view so handlers are correctly bound after being attached.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _attachChildren: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    _.each(<span class="hljs-keyword">this</span>._children, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(child)</span> {</span>
-      <span class="hljs-keyword">this</span>._attachChild(child);
-      child.view.delegateEvents();
-    }, <span class="hljs-keyword">this</span>);
-  },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    _attachChildren: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      _.each(<span class="hljs-keyword">this</span>._children, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(child)</span> {</span>
+        <span class="hljs-keyword">this</span>._attachChild(child);
+        child.view.delegateEvents();
+      }, <span class="hljs-keyword">this</span>);
+    },</pre></div></div>
             
         </li>
         
@@ -525,15 +527,15 @@ child view so handlers are correctly bound after being attached.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  _detachChildren: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    _.each(<span class="hljs-keyword">this</span>._children, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(child)</span> {</span>
-      <span class="hljs-keyword">if</span> (child.view.$el) {
-        child.view.$el.detach();
-      }
-    });
-  }
+            <div class="content"><div class='highlight'><pre>    _detachChildren: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+      _.each(<span class="hljs-keyword">this</span>._children, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(child)</span> {</span>
+        <span class="hljs-keyword">if</span> (child.view.$el) {
+          child.view.$el.detach();
+        }
+      });
+    }
 
-});</pre></div></div>
+  });</pre></div></div>
             
         </li>
         
@@ -548,7 +550,9 @@ child view so handlers are correctly bound after being attached.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>Backbone.Component.prototype.add = Backbone.Component.prototype.append;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  Backbone.Component.prototype.add = Backbone.Component.prototype.append;
+
+})(Backbone);</pre></div></div>
             
         </li>
         
