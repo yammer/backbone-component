@@ -1,3 +1,11 @@
+/*!
+ * Backbone.Component
+ * https://github.com/yammer/backbone-component
+ *
+ * Copyright 2014 Microsoft Corporation
+ * Released under the MIT license
+ */
+
 // Backbone.Component
 // ==================
 //
