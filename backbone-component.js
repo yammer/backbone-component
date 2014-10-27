@@ -1,17 +1,17 @@
-/*!
- * Backbone.Component
- * https://github.com/yammer/backbone-component
- *
- * Copyright 2014 Microsoft Corporation
- * Released under the MIT license
- */
-
 // Backbone.Component
 // ==================
 //
 // A thin layer on top of Backbone's view class to add nested child views.
 
-(function (Backbone) {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['underscore', 'Backbone'], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory(require('underscore', 'Backbone'));
+  } else {
+    factory(root._, root.Backbone);
+  }
+})(this, function (_, Backbone) {
 
   var isIE = (function() {
     // MSIE < 11
@@ -200,4 +200,6 @@
   // Alias `add` to `append`.
   Backbone.Component.prototype.add = Backbone.Component.prototype.append;
 
-})(Backbone);
+  return Backbone.Component;
+
+});
