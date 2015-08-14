@@ -72,7 +72,7 @@
 
     // Render the existing template with the provided data.
     renderTemplate: function(data) {
-      this.$el.html(this._compile(this.template)(data));
+      this.$el.html(this._compile(this.template)(data || {}));
       return this;
     },
 
